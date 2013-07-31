@@ -1,0 +1,1921 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+  
+  
+  
+  
+  <link type="text/css" href="css/styles.css" rel="stylesheet">
+
+
+
+
+
+  
+  
+  
+  
+  <link type="image/x-icon" href="logo.ico" rel="shortcut icon"><title>The Parallel Iterator Tutorial - Home</title>
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta content="Nasser Giacaman" name="AUTHOR">
+
+
+
+
+
+  
+  
+  
+  
+  <meta content="University of Auckland, desktop, parallelization, parallelisation, Parallel Iterator, Nasser Giacaman, Oliver Sinnen" name="KEYWORDS"></head><body>
+
+
+
+
+
+<table style="background-color: rgb(14, 87, 21); width: 800px; height: 170px; text-align: left; margin-left: auto; margin-right: auto;" border="2" cellpadding="10" cellspacing="5">
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+    <tr style="color: rgb(6, 155, 48);" class="logo">
+
+
+
+
+
+      <td style="height: 75px; padding-left: 25px; text-align: center; background-color: rgb(255, 255, 153);" class="logo" background="images/bg.jpg">
+      
+      
+      
+      
+      <h1>The Parallel Iterator</h1>
+
+
+
+
+      
+      
+      
+      
+      <h2 style="text-align: center; color: rgb(0, 102, 0);">Version 0.9, August 2009</h2>
+
+
+
+
+
+      </td>
+
+
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+
+
+
+
+      <td style="background-color: rgb(255, 255, 204);">
+Welcome to the official Parallel Iterator website. Here you will find
+background information for the Parallel Iterator's motivation, as well
+as some examples to illustrate the&nbsp;numerous features it provides.<br>
+
+
+
+
+      
+      
+      
+      
+      <ul>
+
+
+
+
+        <li>1. &nbsp;<a href="#1._Motivation">Motivation</a></li>
+
+
+
+
+        
+        
+        
+        
+        <ul>
+
+
+
+
+          <li>1.1&nbsp; <a href="#1.1_Why_parallel_computing">Why parallel computing?</a></li>
+
+
+
+
+          <li>1.2 &nbsp;<a href="#1.2_Object-oriented_programming_and">Object-oriented programming and (sequential) Iterators</a></li>
+
+
+
+
+          <li>1.3 &nbsp;<a href="#1.3_The_Parallel_Iterator">The Parallel Iterator</a></li>
+
+
+
+
+        
+        
+        
+        
+        </ul>
+
+
+
+
+        <li>2. &nbsp;<a href="#2._Parallel_Iterator_examples">Parallel Iterator examples</a></li>
+
+
+
+
+        
+        
+        
+        
+        <ul>
+
+
+
+
+          <li>2.1 &nbsp;<a href="#2.1_Hello_World">Hello, World!</a></li>
+
+
+
+
+          <li>2.2 &nbsp;<a href="#2.2_Scheduling_policies">Scheduling policies</a></li>
+
+
+
+
+        
+        
+        
+        
+        </ul>
+
+
+
+
+        
+        
+        
+        
+        <ul>
+
+
+
+
+          <li>2.3 &nbsp;<a href="#2.3_Reductions">Reductions</a></li>
+
+
+
+
+        
+        
+        
+        
+        </ul>
+
+
+
+
+        
+        
+        
+        
+        <ul>
+
+
+
+
+          <li>2.4 &nbsp;<a href="#2.4_Early_loop_termination">Early loop termination - parallel break semantics</a></li>
+
+
+
+
+          <li>2.5 &nbsp;<a href="#2.5_Exception_handling">Exception handling</a></li>
+
+
+
+
+        
+        
+        
+        
+        </ul>
+
+
+
+
+        <li>3. &nbsp;<a href="#3._Further_information">Downloads and further information</a></li>
+
+
+        <li>4. &nbsp;<a href="#People">People</a></li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+      
+      
+      
+      
+      <h2><a href="#3._Contact_and_further_information" name="1._Motivation"></a>1. Motivation</h2>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="1.1_Why_parallel_computing"></a>1.1&nbsp; Why parallel computing?</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">Parallel
+computing has arrived to mainstream desktop systems in the form of
+multi-core processors because of the difficulties in maintaining
+improvements in uni-processor clock-speed. Unfortunately, users will
+not witness any performance improvements unless their applications are
+parallelized. Parallel computing is however notoriously difficult,
+especially in terms of program correctness and high performance.<br>
+
+
+
+
+      </div>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="1.2_Object-oriented_programming_and"></a>1.2 &nbsp;Object-oriented programming and (sequential) Iterators</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">An important aspect of the Parallel Iterator is that it focusses on object-oriented (OO) programming, since the most popular
+languages are OO [TIOBE], especially for general purpose desktop
+applications. Iterative computations usually carry the lion's share of
+computational load, and in OO languages this is often implemented with <span style="font-style: italic;">iterators</span>. For example, consider the following Java application code that traverses a collection of files and processes each one:</div>
+
+
+
+
+      
+      
+      
+      
+      <pre>	Collection&lt;File&gt; elements = ...<br>	Iterator&lt;File&gt; it = elements.iterator();<br>	while ( it.hasNext() ) {<br>		File file = it.next();<br>		processFile(file);	<br>	}<br></pre>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">Unfortunately,
+this code only contains one thread - therefore only one processor core
+will be employed to execute the loop while the other cores remain idle!
+So, what are software developers left to do? Unfortunately, they must
+first create multiple threads, and then explicitly distribute the
+elements amongst the threads. The following problems arise: <br>
+
+
+
+
+      
+      
+      
+      
+      <ul>
+
+
+
+
+        <li>how are the elements distributed amongst the threads? (i.e. the scheduling policy)</li>
+
+
+
+
+        <li>how to implement such a scheme?</li>
+
+
+
+
+        <li>what about the correctness of the manually-implemented distribution scheme?</li>
+
+
+
+
+        <li>what about the performance of this scheme?</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+In most case, the programmer must <span style="font-style: italic;">manually</span>
+implement such a scheduling policy. Unfortunately, the simplest schemes
+to implement tend to be the least efficient, while the most efficient
+schemes tend to be too complicated and error prone.
+      
+      
+      
+      
+      <h3><a name="1.3_The_Parallel_Iterator"></a>1.3 &nbsp;The Parallel Iterator</h3>
+
+
+
+
+This
+is where the Parallel Iterator comes in. It is a thread-safe Iterator
+that is shared amongst the threads, all without&nbsp;worrying about
+implementing the underlying scheduling policy (including the tedious
+parallelization concerns). Anyone familiar with the standard sequential
+Iterator will find the Parallel Iterator very intuitive. Below is the
+same
+example from above but using the Parallel Iterator:<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>	Collection&lt;File&gt; elements = ...<br>	ParIterator&lt;File&gt; it = ParIteratorFactory.createParIterator(elements, threadCount);<br><br>	// each thread does this<br>	while ( it.<span style="font-weight: bold;">hasNext()</span> ) {<br>		File file = it.<span style="font-weight: bold;">next()</span>;<br>		processFile(file);	<br>	} // implicit synchronization barrier</pre>
+
+
+
+
+      <span style="font-weight: bold;">What is the difference compared to the sequential Iterator?</span><br>
+
+
+
+
+The
+difference is that the Parallel Iterator is thread-safe, unlike the
+standard sequential Iterator. This allows all the threads to share it,
+while the distribution of the elements is
+handled internally. Other than that, notice how the Parallel Iterator
+has the same interface as the standard sequential Iterator. In fact,
+the Parallel Iterator interface even extends the sequential Iterator's
+interface!&nbsp;<br>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;"><a name="synchronization_barrier"></a>What is the implicit synchronization barrier for?</span><br>
+
+
+
+
+Since
+multiple threads are sharing the same Parallel Iterator, it is
+important that none of the threads continue executing past the loop
+until all the other threads have also finished. This is because code
+following the loop might rely on results of the completed loop.
+Therefore, the call to <span style="font-family: Courier New,Courier,monospace;">hasNext()</span> will actually block a thread until all the other threads finish executing their respective iterations. After this block,&nbsp;<span style="font-family: Courier New,Courier,monospace;">false</span> is returned to all threads and they therefore break out of the loop together.<br>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;">Wait a minute, is the combination of <span style="font-family: Courier New,Courier,monospace;">hasNext()/next()</span> atomic?!?!</span><br>
+
+
+
+
+Absolutely! At first, it might seem that the respective calls of <span style="font-family: Courier New,Courier,monospace;">hasNext()</span> and <span style="font-family: Courier New,Courier,monospace;">next()</span> are not atomic, since another thread might also invoke <span style="font-family: Courier New,Courier,monospace;">hasNext()</span>
+in between! This is the main reason why the standard sequential
+Iterator cannot be used, since only one element might remain in the
+list (and '<span style="font-family: Courier New,Courier,monospace;">true</span>' is returned to more than one thread!). <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; However, the Parallel Iterator is totally thread safe! If a particular thread receives '<span style="font-family: Courier New,Courier,monospace;">true</span>' from calling <span style="font-family: Courier New,Courier,monospace;">hasNext()</span>, then it is guaranteed that an element is reserved for it. Other threads will receive '<span style="font-family: Courier New,Courier,monospace;">false</span>' (after blocking at the <a href="#synchronization_barrier">barrier</a>). <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; For this reason, threads must continue to iterate until they receive&nbsp; '<span style="font-family: Courier New,Courier,monospace;">false</span>'
+from the Parallel Iterator. Otherwise, the Parallel Iterator will keep
+waiting for that thread to come back to get the elements it reserved
+for it. Early loop termination is still possible, by using one of the
+Parallel Iterator's <a href="#2.4_Early_loop_termination">break mechanisms</a>.</div>
+
+
+
+
+      
+      
+      
+      
+      <h2><a name="2._Parallel_Iterator_examples"></a>2. &nbsp;Parallel Iterator examples</h2>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="2.1_Hello_World"></a>2.1 &nbsp;Hello, World!</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">No tutorial would be complete without the nutorious <span style="font-style: italic;">Hello, World!</span> example! Below is the complete code to run our first application using the Parallel Iterator:<br>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;">MainApp.java (<a href="examples/eg1/MainApp.java">download here</a>)</span><br>
+
+
+
+
+      
+      
+      
+      
+      <pre>import pi.ParIterator;<br>import pi.ParIteratorFactory;<br>import java.util.*;<br><br>public class MainApp {<br>	<br>	<a name="getElements"></a>public static Collection&lt;String&gt; getElements() {<br>		List&lt;String&gt; list = new ArrayList&lt;String&gt;();<br>		list.add("one");<br>		list.add("two");<br>		list.add("three");<br>		list.add("four");<br>		list.add("five");<br>		list.add("six");<br>		list.add("seven");<br>		list.add("eight");<br>		return list;<br>	}<br><br>	public static void main(String[] args) {<br>		<br>		int threadCount = 2;<br>		<br>		// Get a Parallel Iterator for the collection of elements<br>		Collection&lt;String&gt; elements = getElements();<br>		ParIterator&lt;String&gt; pi = ParIteratorFactory.createParIterator(elements, threadCount);<br>&nbsp;<br>		// Create and start a pool of worker threads<br>		Thread[] threadPool = new WorkerThread[threadCount];<br>		for (int i = 0; i &lt; threadCount; i++) {<br>			threadPool[i] = new WorkerThread(i, pi);<br>			threadPool[i].start();<br>		}<br>		<br>		// ... Main thread may compute other (independant) tasks<br><br>		// Main thread waits for worker threads to complete<br>		for (int i = 0; i &lt; threadCount; i++) {<br>			try {<br>				threadPool[i].join();<br>			} catch(InterruptedException e) {<br>				e.printStackTrace();<br>			}<br>		}<br>		System.out.println("All worker threads have completed.");<br>	}<br>}<br><br></pre>
+
+
+
+
+      <span style="font-weight: bold;"><a name="WorkerThread"></a>WorkerThread.java (<a href="examples/eg1/WorkerThread.java">download here</a>)<br>
+
+
+
+
+      <br>
+
+
+
+
+      </span><span style="font-weight: bold;"></span>
+      
+      
+      
+      
+      <pre>import pi.ParIterator;<br><br>public class WorkerThread extends Thread {<br>		<br>	private ParIterator&lt;String&gt; pi = null;<br>	private int id = -1;<br><br>	public WorkerThread(int id, ParIterator&lt;String&gt; pi) {<br>		this.id = id;<br>		this.pi = pi;<br>	}<br><br>	public void run() {<br>		while (pi.hasNext()) {<br>			String element = pi.next();<br>			System.out.println("Hello from Thread "+id+", who got element: "+element);<br>			<br>			// slow down the threads (to illustrate the scheduling)<br>			try {<br>				Thread.sleep(1000);<br>			} catch (InterruptedException e) {<br>				e.printStackTrace();<br>			}<br>		}<br>		System.out.println("    Thread "+id+" has finished.");<br>	}<br>}<span style="font-family: Verdana,Arial,Helvetica,sans-serif;"><span style="font-weight: bold;"><br></span></span><span style="font-family: Verdana,Arial,Helvetica,sans-serif;"><span style="font-weight: bold;"></span></span></pre>
+
+
+
+
+A possible output from the above program might look like:<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>Thread 0 got element: one<br>Thread 1 got element: two<br>Thread 0 got element: three<br>Thread 1 got element: four<br>Thread 0 got element: five<br>Thread 1 got element: six<br>Thread 1 got element: seven<br>Thread 0 got element: eight<br>   Thread 0 has finished.<br>   Thread 1 has finished.<br>All worker threads have completed.</pre>
+
+
+
+
+      <span style="font-family: Verdana,Arial,Helvetica,sans-serif;"><span style="font-weight: bold;"></span></span><span style="font-family: Verdana,Arial,Helvetica,sans-serif;"><span style="font-weight: bold;"></span></span>The Parallel Iterator in this example made use of the default <a href="#2.2_Scheduling_policies">scheduling policy</a>
+(dynamic scheduling with chunk size of one). In this policy, elements
+are distributed one at a time to threads as they are requested. This
+works well for most applications, but some situations might require
+other <a href="#2.2_Scheduling_policies">scheduling policies</a>.<span style="font-weight: bold;"></span></div>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="2.2_Scheduling_policies"></a>2.2 &nbsp;Scheduling policies</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;"><span style="font-weight: bold;">What is a scheduling policy?<br>
+
+
+
+
+      </span>A scheduling policy determines how the iteration space is divided amongst threads into smaller <span style="font-style: italic;">chunks</span>. The <span style="font-style: italic;">chunk size&nbsp;</span>allows for further fine-tuning, by determining how many iterations at a time are reserved for a particular thread. The&nbsp;<span style="font-weight: bold;"></span>Parallel Iterator has been implemented to support the following major scheduling policies:<br>
+
+
+
+
+      
+      
+      
+      
+      <ul>
+
+
+
+
+        <li><span style="font-weight: bold;">Static:</span> all iterations are assigned to threads before the execution of the loop. This may either be <span style="font-style: italic;">block</span> or <span style="font-style: italic;">cyclic</span>:</li>
+
+
+
+
+        
+        
+        
+        
+        <ul>
+
+
+
+
+          <li><span style="font-style: italic;">Block:</span> each thread is assigned (at most) one large chunk.</li>
+
+
+
+
+          <li><span style="font-style: italic;">Cyclic:</span> the iterations are grouped into smaller chunks, and threads are assigned chunks in a round-robin fashion.</li>
+
+
+
+
+        
+        
+        
+        
+        </ul>
+
+
+
+
+        <li><span style="font-weight: bold;">Dynamic:</span> each thread requests a chunk of iterations to process at runtime.&nbsp;</li>
+
+
+
+
+        <li><span style="font-weight: bold;">Guided:</span> similar to dynamic, except the size of each chunk decreases as iterations are distributed.</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+      
+      
+      
+      
+      <table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr>
+
+
+
+
+            <td><img style="width: 400px; height: 45px;" alt="Static block" title="Static block" src="images/sp_block.png"></td>
+
+
+
+
+            <td><img style="width: 400px; height: 45px;" alt="Static block" title="Static block" src="images/sp_cyclic.png"></td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center;">(a) Static block</td>
+
+
+
+
+            <td style="text-align: center;">(b) Static cyclic</td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td><img style="width: 400px; height: 45px;" alt="Static block" title="Static block" src="images/sp_dynamic.png"></td>
+
+
+
+
+            <td><img style="width: 400px; height: 45px;" alt="Static block" title="Static block" src="images/sp_guided.png"></td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center;">(c) Dynamic</td>
+
+
+
+
+            <td style="text-align: center;">(d) Guided</td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr align="center">
+
+
+
+
+            <td colspan="2" rowspan="1"><span style="font-weight: bold;">Figure 1:</span>
+The major scheduling policies supported by the Parallel Iterator. These
+examples show some of the possible ways a collection of 9 elements
+might be allocated amongst 3 threads.</td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        
+        </tbody>
+      
+      
+      
+      
+      </table>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;">Why would I want to change the scheduling policy?<br>
+
+
+
+
+      </span>For
+many applications, the default scheduling policy will be sufficient.
+However, some cases might require a slightly different policy. For
+example:<br>
+
+
+
+
+      
+      
+      
+      
+      <ul>
+
+
+
+
+        <li>if iterations are very fine-grained, then a dynamic
+scheduling policy with a chunk size of 1 is the worst policy to use due
+to the high amounts of run-time synchronization overhead required. In
+such a scenario, it is best to increase the chunk size.</li>
+
+
+
+
+        <li>if
+iterations are known to require equal amounts of computing, then a
+static scheduling is best since this minises the run-time distribution
+overhead. However, such a policy is not good for iterations that take
+variable amounts of computing time since this reserves too many
+iterations while other threads remain idle.</li>
+
+
+
+
+        <li>the guided schedule
+is a compromise between the dynamic and static block scheduling
+schemes: chunks are reserved for each thread proportional to the number
+of threads and number of iterations remaining. Therefore, this scheme
+starts off looking like a static block scheduling policy, but
+eventually converges into a dyncamic schedule.</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+      <span style="font-weight: bold;"><br>
+
+
+
+
+How are these scheduling policies used?</span><br>
+
+
+
+
+Using the above scheduling policies is extremely easy! The first <a href="#2.1_Hello_World"><span style="font-style: italic;">Hello, World!</span> example</a>
+above used the default scheduling policy, which is dynamic with chunk
+size 1. To use any of the other scheduling schemes, simply specify this
+when creating the Parallel Iterator. <br>
+
+
+
+
+      <br>
+
+
+
+
+To best illustrate the different scheduling schemes, we will modify the run() method of the <a href="#WorkerThread">WorkerThread</a> as follows (only the <span style="color: rgb(51, 51, 255);">code in blue</span>
+has been modified):<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>	public void run() {<br>		while (pi.hasNext()) {<br>			String element = pi.next();<br>			System.out.println("Hello from Thread "+id+", who got element: "+element);<br>			<br>			// slow down the threads (to illustrate the scheduling)<br>			try {<br><span style="color: rgb(51, 51, 255);">				if (id == 0)</span><br style="color: rgb(51, 51, 255);"><span style="color: rgb(51, 51, 255);">					Thread.sleep(50);</span><br style="color: rgb(51, 51, 255);"><span style="color: rgb(51, 51, 255);">				if (id == 1)</span><br style="color: rgb(51, 51, 255);"><span style="color: rgb(51, 51, 255);">					Thread.sleep(1000);</span><span style="color: rgb(51, 51, 255);"></span><br>			} catch (InterruptedException e) {<br>				e.printStackTrace();<br>			}<br>		}<br>		System.out.println("Thread "+id+" has finished.");<br>	}</pre>
+
+
+
+
+Iterations
+of the thread 0 will take only 50ms,
+while the iterations of thread 1 will take 1000ms. Below are
+the various outputs as we change the scheduling policy. Notice that the
+only modification is the parameters in creating the Parallel Iterator;
+other than this, the rest of the code remains the same!&nbsp;<br>
+
+
+
+
+      
+      
+      
+      
+      <ul style="color: rgb(0, 102, 0);">
+
+
+
+
+        <li>
+          
+          
+          
+          
+          <pre><big>ParIteratorFactory.createParIterator(elements, threadCount);</big></pre>
+
+
+
+
+        </li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+This example uses the default scheduling policy: dynamic with chunk size of 1:
+      
+      
+      
+      
+      <pre>Thread 0 got element: one<br>Thread 1 got element: two<br>Thread 0 got element: three<br>Thread 0 got element: four<br>Thread 0 got element: five<br>Thread 0 got element: six<br>Thread 0 got element: seven<br>Thread 0 got element: eight<br>    Thread 1 has finished.<br>    Thread 0 has finished.<br>All worker threads have completed.<br></pre>
+
+
+
+
+Notice how thread 1 only managed to complete 1 of the 8 iterations, since thread 0 had much smaller iterations to compute. <br>
+
+
+
+
+      
+      
+      
+      
+      <ul style="color: rgb(0, 102, 0);">
+
+
+
+
+        <li>
+          
+          
+          
+          
+          <pre><big>ParIteratorFactory.createParIterator(elements, threadCount, <span style="font-weight: bold;">ParIterator.Schedule.DYNAMIC</span>, <span style="font-weight: bold;">3</span>);</big></pre>
+
+
+
+
+        </li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+This example uses dynamic scheduling with chunk size of 3:
+      
+      
+      
+      
+      <pre>Thread 0 got element: one<br>Thread 1 got element: four<br>Thread 0 got element: two<br>Thread 0 got element: three<br>Thread 0 got element: seven<br>Thread 0 got element: eight<br>Thread 1 got element: five<br>Thread 1 got element: six<br>    Thread 1 has finished.<br>    Thread 0 has finished.<br>All worker threads have completed.<br></pre>
+
+
+
+
+The
+above scheduling policy changed the chunk size to 3. This means that 3
+iterations are reserved at a time for a thread. In this particular run,
+thread 0 was first to the Parallel Iterator, so it was reserved
+elements 'one', 'two' and 'three'. Thread 1 was then allocated
+iterations 'four', 'five' and 'six'. <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Since
+thread 1 is much slower than thread 0, completed it's current chunk
+(consisting of 'one', 'two' and 'three'). It then went back to the
+Parallel Iterator and got the next chunk reserved: only elements
+'seven' and 'eight' are unreserved so these were assigned to thread 0.
+By this time, thread 1 has not even completed its first iteration!
+Thread 0 however is forced to wait until thread 1 completes the other
+elements.<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Note that is this particular example,
+increasing the chunk-size was a bad idea. But for other fine-grained
+iterations, increasing the chunk size is a good thing. This is why the
+Parallel Iterator allows the scheduling to be customised, since it is
+application specific.<br>
+
+
+
+
+      
+      
+      
+      
+      <ul style="color: rgb(0, 102, 0);">
+
+
+
+
+        <li>
+          
+          
+          
+          
+          <pre><big>ParIteratorFactory.createParIterator(elements, threadCount, <span style="font-weight: bold;">ParIterator.Schedule.STATIC</span>);</big></pre>
+
+
+
+
+        </li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+This example uses static block scheduling (block scheduling if no chunk size is specified):
+      
+      
+      
+      
+      <pre>Thread 0 got element: one<br>Thread 1 got element: five<br>Thread 0 got element: two<br>Thread 0 got element: three<br>Thread 0 got element: four<br>Thread 1 got element: six<br>Thread 1 got element: seven<br>Thread 1 got element: eight<br>    Thread 1 has finished.<br>    Thread 0 has finished.<br>All worker threads have completed.<br></pre>
+
+
+
+
+In
+static scheduling, the results above will look the same regardless of
+how many times we run the program or even if we change the sleep amount
+for each thread. This is because the iterations are assigned before the
+loop begins executing. Since we have 2 threads and 8 elements, thread 0
+gets the first half of the elements while thread 1 gets the second
+half. Again, thread 0 waits for thread 1 to finish. In some situations,
+where the iterations are known to be equal sized and fine-grained,
+static block scheduling works very well.<br>
+
+
+
+
+      
+      
+      
+      
+      <ul style="color: rgb(0, 102, 0);">
+
+
+
+
+        <li>
+          
+          
+          
+          
+          <pre><big>ParIteratorFactory.createParIterator(elements, threadCount, <span style="font-weight: bold;">ParIterator.Schedule.STATIC</span>, <span style="font-weight: bold;">2</span>);</big></pre>
+
+
+
+
+        </li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+This example uses static scheduling with a chunk size of 2:
+      
+      
+      
+      
+      <pre>Thread 0 got element: one<br>Thread 1 got element: three<br>Thread 0 got element: two<br>Thread 0 got element: five<br>Thread 0 got element: six<br>Thread 1 got element: four<br>Thread 1 got element: seven<br>Thread 1 got element: eight<br>    Thread 1 has finished.<br>    Thread 0 has finished.<br>All worker threads have completed.<br></pre>
+
+
+
+
+Again,
+in this static cyclic scheduling example, iterations are assigned
+before the loop begins executed. However, chunks are broken into
+smaller sizes by specifying a chunk size. Therefore, the 8 elements are
+broken into 4 chunks of size 2:<br>
+
+
+
+
+      
+      
+      
+      
+      <ul style="margin-left: 40px; list-style-type: circle;">
+
+
+
+
+        <li>thread 0 will always get the 1st chunk containing iterations 'one', 'two'<br>
+
+
+
+
+        </li>
+
+
+
+
+        <li>thread 1 will always get the 2nd chunk containing iterations 'three', 'four'<br>
+
+
+
+
+        </li>
+
+
+
+
+        <li>thread 0 will always get the 3rd chunk containing iterations 'five', 'six'<br>
+
+
+
+
+        </li>
+
+
+
+
+        <li>thread 1 will always get the 4th chunk containing iterations 'seven', 'eight'</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+      
+      
+      
+      
+      <ul style="color: rgb(0, 102, 0);">
+
+
+
+
+        <li>
+          
+          
+          
+          
+          <pre><big>ParIteratorFactory.createParIterator(elements, threadCount, <span style="font-weight: bold;">ParIterator.Schedule.GUIDED, 1</span>);</big></pre>
+
+
+
+
+        </li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+This example uses guided scheduling with a chunk size of 1:
+      
+      
+      
+      
+      <pre>Thread 0 got element: one<br>Thread 1 got element: five<br>Thread 0 got element: two<br>Thread 0 got element: three<br>Thread 0 got element: four<br>Thread 0 got element: seven<br>Thread 0 got element: eight<br>Thread 1 got element: six<br>    Thread 1 has finished.<br>    Thread 0 has finished.<br>All worker threads have completed.<br></pre>
+
+
+
+
+As
+mentioned earlier, the guided schedule is a combination of static and
+dynamic. The static part comes from the fact that the number of chunks
+(and their respective sizes) is fixed. However, the dynamic component
+of guided is that these chunks are only assigned as threads request
+work. Therefore, in our example, the 8 elements are broken into the
+following 4 chunks (initially unassigned to the threads). Note that
+sizes are determined by dividing the number of elements left by the
+number of threads:<br>
+
+
+
+
+      
+      
+      
+      
+      <ul style="margin-left: 40px; list-style-type: circle;">
+
+
+
+
+        <li>The 1st chunk contains iterations 'one', 'two', 'three', 'four' (8/2 = 4)</li>
+
+
+
+
+        <li>The 2nd chunk contains iterations 'five', 'six' (4/2 = 2)</li>
+
+
+
+
+        <li>The 3rd chunk contains iteration 'seven' (2/2 = 1)</li>
+
+
+
+
+        <li>The 4th chunk contains iteration 'eight' (1/2 = 1)</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+Since
+thread 1 is much slower, it only managed to get the 2nd chunk, while
+thread 0 executed all the other chunks. Note that the chunk size in the
+context of the guided schedule resembles the minimum number of elements
+in a chunk (unless fewer elements remain). Therefore, if the chunk size
+in this case was increased to 2, then only 3 chunks would exist (since
+the 3rd chunk would contain the last two remaining elements).</div>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="2.3_Reductions"></a>2.3 &nbsp;Reductions</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">For
+programs that share variables, programmers must provide mutual
+exclusion to ensure correct results. In a threading library, this is
+typically solved using a mutex. Unfortunately, programs with
+fine-grained parallelism would suffer heavily in performance;
+consequently, a reduction is a standard parallelization technique to
+deal with such cases. <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Below is a simple example
+to illustrate the necessary steps in performing a reduction with the
+Parallel Iterator:<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>// initialise Parallel Iterator and Reducible<br>Collection&lt;Integer&gt; elements = ...<br>ParIterator&lt;Integer&gt; it = ParIteratorFactory.createParIterator(elements);<br>Reducible&lt;Integer&gt; localMin = new Reducible&lt;Integer&gt;(Integer.MAX);<br><br>// each thread does this<br>while (it.hasNext()) {<br>  int v = it.next();<br>  if (v &lt; localMin.<span style="font-weight: bold;">get</span>())<br>    localMin.<span style="font-weight: bold;">set</span>(v);<br>}<br><br>// final code, executed by any thread<br>int finalMin = localMin.<span style="font-weight: bold;">reduce</span>(Reduction.IntegerMIN);<br><br></pre>
+
+
+
+
+The Reducible object is essentially a thread-local object. In fact, the get() and set() methods are used exactly like Java's <span style="font-family: Courier New,Courier,monospace;">ThreadLocal</span>
+class! The only difference is the reduce() method at the end, it
+performs the specified reduction across all the internal thread-local
+values, and returns the final value. <br>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;">What if I want a custom (user-defined) reduction?</span><br>
+
+
+
+
+The above example was trivial in
+order to illustrate how the Reducible object works. However, the real
+power of this feature is that you can specify your own customised
+reductions using any object type! The only requirements are that the
+custom reduction must be:<br>
+
+
+
+
+      
+      
+      
+      
+      <div style="margin-left: 40px;">
+      
+      
+      
+      
+      <ul style="list-style-type: circle;">
+
+
+
+
+        <li><span style="font-weight: bold;">associative:</span>&nbsp;the order of evaluating the reduction makes no difference, and&nbsp;</li>
+
+
+
+
+        <li><span style="font-weight: bold;">commutative:</span>&nbsp;the order of the thread-local values makes no difference.</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+      </div>
+
+
+
+
+In
+order to define such a reduction, simply create a class that extends
+the&nbsp;Reduction interface. For example, consider the following
+application where the WorkerThreads count word occurances in a
+collection of Strings (or a collection of Files!):<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>	public void run() {<br>		HashMap&lt;String, Integer&gt; myMap = new HashMap&lt;String, Integer&gt;();<br>		localMap.set(myMap);<br>		while (pi.hasNext()) {<br>			String element = pi.next();<br>			System.out.println("Thread "+id+" got element: "+element);<br>			if (myMap.containsKey(element)) {<br>				int oldCount = myMap.get(element);<br>				myMap.put(element, oldCount+1);				<br>			} else {<br>				myMap.put(element, 1);<br>			}<br>		}<br>		System.out.println("    Thread "+id+" has finished.");<br>	}<br></pre>
+
+
+
+
+When
+each WorkerThread completes its iterations, it will have only a partial
+result for the files that it processed. Therefore, the HashMaps need to
+be reduced into a single result set. The main code now looks as follows:<br>
+
+
+
+
+      
+      
+      
+      
+      <pre><br>	Collection&lt;String&gt; elements = getElements(); <span style="color: rgb(153, 51, 0); font-weight: bold;">// contains 1 x "one", 2 x "two", 3 x "three" and 4 x "four"</span><br>	ParIterator&lt;String&gt; pi = ParIteratorFactory.createParIterator(elements, threadCount, ParIterator.Schedule.STATIC);<br>	<br>	// The Reducible object acts like a thread-local, except thread-local values are reduced at the end.<br>	<span style="color: rgb(0, 0, 153);">Reducible&lt;HashMap&lt;String,Integer&gt;&gt; <span style="font-weight: bold;">localMap</span> = new Reducible&lt;HashMap&lt;String,Integer&gt;&gt;();</span> <br>	<br>	// create and start a pool of worker threads<br>	...<br>	for (...) {<br>		threadPool[i] = new WorkerThread(i, pi, <span style="color: rgb(0, 0, 153); font-weight: bold;">localMap</span><span style="font-weight: bold;">);</span><br>	}<br>	<br>	// Main thread waits for worker threads to complete<br>	...<br>	System.out.println("All worker threads have completed.");<br>	<br>	// define a custom reduction in the form of 2 elements into 1.<br>	<span style="color: rgb(0, 102, 0);">Reduction&lt;HashMap&lt;String,Integer&gt;&gt; </span><span style="font-weight: bold; color: rgb(0, 102, 0);">mapReduction</span><span style="color: rgb(0, 102, 0);"> = new Reduction&lt;HashMap&lt;String,Integer&gt;&gt;() {</span><br style="color: rgb(0, 102, 0);"><span style="color: rgb(0, 102, 0);">		public HashMap&lt;String,Integer&gt; reduction(<br>						HashMap&lt;String,Integer&gt; first, <br>						HashMap&lt;String,Integer&gt; second) {</span><br><span style="color: rgb(131, 131, 131);">			for (String word : first.keySet()) {</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">				if (second.containsKey(word))</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">					first.put(word, first.get(word)+second.get(word));</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">			}</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">			for (String word : second.keySet()) {</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">				if (!first.containsKey(word))</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">					first.put(word, second.get(word));</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">			}</span><br style="color: rgb(131, 131, 131);"><span style="color: rgb(131, 131, 131);">			return first;</span><br>		<span style="color: rgb(0, 102, 0);">}</span><br style="color: rgb(0, 102, 0);"><span style="color: rgb(0, 102, 0);">	};</span><br>	<br>	HashMap&lt;String,Integer&gt; finalMap = <span style="color: rgb(0, 0, 153); font-weight: bold;">localMap</span><span style="font-weight: bold;">.</span>reduce(<span style="font-weight: bold; color: rgb(0, 102, 0);">mapReduction</span>);<br>	for (String word : finalMap.keySet()) {<br>		System.out.println(word+" occured "+finalMap.get(word)+" times.");<br>	}<br><span style="font-family: Verdana,Arial,Helvetica,sans-serif;"></span></pre>
+
+
+
+
+What
+happens here is that the Reducible object is shared amongst the
+threads, just like the Parallel Iterator. At the end, the Reducible
+contains many partial results, each of which is local to a particular
+thread (just like a standard Java ThreadLocal). Therefore, this
+application requires a customised reduction that will accumulate the
+partial results into one final result: this is what the <span style="color: rgb(0, 102, 0);">mapReduction</span><span style="font-weight: bold;"> </span>instance does. And just like our first reduction <a href="#2.3_Reductions">example above</a>, we perform the desired reduction by calling the reduce() method on the Reducible <span style="color: rgb(0, 0, 153);">localMap</span>. <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Not only did this example illustrate how easy it is to perform <span style="font-style: italic;">any</span> reduction on <span style="font-style: italic;">any</span> data type (now that's <span style="font-style: italic;">real</span>
+OOP!), but it also shows how easy it is to "plug in" new reductions
+without modifying the rest of the code (since reductions are defined in
+a separate class). The output from this example looks like the
+following:<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>Thread 1 got element: three<br>Thread 0 got element: three<br>Thread 1 got element: four<br>Thread 0 got element: two<br>Thread 1 got element: two<br>Thread 0 got element: one<br>Thread 1 got element: three<br>Thread 0 got element: four<br>Thread 0 got element: four<br>Thread 1 got element: four<br>    Thread 1 has finished.<br>    Thread 0 has finished.<br>All worker threads have completed.<br>two occured 2 times.<br>one occured 1 times.<br>three occured 3 times.<br>four occured 4 times.<br><br></pre>
+
+
+
+
+      </div>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="2.4_Early_loop_termination"></a>2.4 &nbsp;Early loop termination</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">An important concept in iterative computation is the <span style="font-family: Courier New,Courier,monospace;">break</span> statement. However, in a parallel environment, this <span style="font-family: Courier New,Courier,monospace;">break</span> statement must be avoided for the following reasons:<br>
+
+
+
+
+      </div>
+
+
+
+
+      
+      
+      
+      
+      <ol style="text-align: justify;">
+
+
+
+
+        <li>First,
+from a semantics point of view, what does this mean in a parallel
+environment? Does it mean that only the current thread wants to cancel,
+or does it mean that all threads should cancel?</li>
+
+
+
+
+        <li>Second, if a
+thread exits the loop while other threads are still executing
+iterations, this potentially breaks the program correctness since code
+following the loop will be executed while some iterations are still
+being computed!&nbsp;</li>
+
+
+
+
+        <li>Third, if a thread exits the loop without
+informing the Parallel Iterator, the other threads will be waiting
+indefinitely at the <a href="#synchronization_barrier">synchronization barrier</a>
+since the Parallel Iterator is blocking those threads until that thread
+finishes (but it has already left the loop without saying
+goodbye!)&nbsp;</li>
+
+
+
+
+      
+      
+      
+      
+      </ol>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">Therefore,
+the Parallel Iterator provides a solution that addresses all the above
+problems. This comes in the form of the localBreak() and globalBreak()
+methods.<br>
+
+
+
+
+      </div>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;"><a name="global_break"></a>Global break</span><br>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">A global break is the situation where <span style="font-style: italic;">all</span>
+threads should stop processing the loop. Some examples include when an
+item has been found in a parallel search, or the user presses the
+cancel button. This is achieved by one thread calling globalBreak() on
+the Parallel Iterator. All the threads will then receive a false the
+next time they call hasNext() and they therefore all return
+synchronised from this last hasNext() call. Therefore, each thread
+breaks out of its loop in a controlled manner at an iteration
+boundary:&nbsp;<br>
+
+
+
+
+      
+      
+      
+      
+      <pre>// each thread does this<br>boolean itemFound = false;<br>while ( pi.hasNext() ) {<br>	itemFound = searchDocument( pi.next(), searchQuery );<br>  	if ( itemFound )<br>    		pi.globalBreak();<br>}<br></pre>
+
+
+
+
+In
+this example, each thread searches the current iteration (a document)
+for the search query. If the query has been found, then <span style="font-family: Courier New,Courier,monospace;">itemFound</span> is updated to <span style="font-family: Courier New,Courier,monospace;">true</span> for the current thread. As a result, the globalBreak() is called and all the other threads will be told to stop.&nbsp; </div>
+
+
+
+
+      <br>
+
+
+
+
+      <span style="font-weight: bold;"><a name="local_break"></a>Local break</span><br>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">The
+other type of break is when one of the thread wants to stop, but all
+the other iterations of the loop should still be executed (by the other
+threads). An example of this might be to reduce disk contention, for
+instance if too many threads are accessing memory at the same time.
+However, just because the number of threads is (potentially) reducing,
+it is important that the other iterations are still executed. Consider
+the following example: <br>
+
+
+
+
+      
+      
+      
+      
+      <pre>while ( pi.hasNext() ) {<br>  	processDocument( pi.next() );<br>  	if ( tooManyThreads )<br>    		pi.localBreak();<br>}<br></pre>
+
+
+
+
+Clearly,
+we wish that all the documents are processed. Therefore, when a thread
+calls localBreak(), it releases all the elements it has reserved for
+itself so that these elements are processed by the other threads. You
+are probably wondering, what happens if <span style="font-style: italic;">all</span>
+the threads call localBreak() - then won't all the elements be released
+and not executed!?!? No, the localBreak() guarantees that at least one
+thread will be left to process the remaining elements (even if all
+called localBreak()). This one thread (the last to call localBreak())
+will keep processing all the elements until they complete. Therefore,
+the attempt to localBreak() will only succeed if the Parallel Iterator
+guarantees that the elements will be processed by another thread,
+otherwise the attempt to localBreak() will fail (the localBreak()
+returns a boolean denoting whether the thread succeeded in breaking or
+not).<br>
+
+
+
+
+      </div>
+
+
+
+
+      
+      
+      
+      
+      <h3><a name="2.5_Exception_handling"></a>2.5 &nbsp;Exception handling</h3>
+
+
+
+
+      
+      
+      
+      
+      <div style="text-align: justify;">Exception
+handling is very important in object-oriented languages, especially
+Java. Therefore, the Parallel Iterator provides a helper function to
+support debugging exceptions that occur in a parallel loop. This might
+be especially tricky to achieve in a parallel loop since multiple
+threads might each come across an exception. Unlike a sequential loop,
+a parallel loop might therefore result in multiple exceptions! However,
+similar to the arguments given in the <a href="#2.4_Early_loop_termination">break section</a>, it is important that a thread never prematurely leaves the parallel loop without informing the Parallel Iterator. <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Therefore, threads must <span style="font-style: italic;">always</span>
+catch exceptions within scope of the Parallel Iterator (otherwise, the
+Parallel Iterator will force all the other threads to wait as discussed
+above). When a thread catches an exception, one of the following
+behaviours is then possible:<br>
+
+
+
+
+      
+      
+      
+      
+      <ul>
+
+
+
+
+        <li><span style="font-style: italic;"><a name="different_exc_behaviours"></a>Do nothing:</span> the thread catches an exception but decides to ignore it, so it continues to call hasNext() and next() as usual</li>
+
+
+
+
+        <li><span style="font-style: italic;">Stop locally:</span> the thread catches an exception and determines only it should stop, so it calls <a href="#local_break">localBreak()</a> &nbsp;</li>
+
+
+
+
+        <li><span style="font-style: italic;">Stop globally:</span> the thread catches an exception and determines that all threads should stop, so it calls <a href="#global_break">globalBreak()</a> &nbsp;</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+      <span style="font-weight: bold;">The register() helper function</span><br>
+
+
+
+
+In order to
+handle exceptions in parallel, the programmer would need to manually
+implement logic to record the exception, the iteration in which it
+occurred, the thread that encountered it and then notify the other
+threads. Managing all<br>
+
+
+
+
+this manually is di&#64259;cult for the programmer. The Parallel Iterator provides a helper function to
+conveniently record this information. The programmer is only required
+to catch exceptions (standard procedure as if using a sequential
+iterator). When an exception is caught, register(Exception) is invoked
+which will record the following information (storing them within a
+ParIteratorException):<br>
+
+
+
+
+      
+      
+      
+      
+      <ul>
+
+
+
+
+        <li>The Exception encountered</li>
+
+
+
+
+        <li>The Thread that encountered the exception (for potential debugging purposes)</li>
+
+
+
+
+        <li>The iteration in which the exception occurred (determined using hasNext()&nbsp;as iteration boundary)</li>
+
+
+
+
+      
+      
+      
+      
+      </ul>
+
+
+
+
+Below is example code that shows how the <a href="#different_exc_behaviours">different behaviours</a> may be achieved:
+      
+      
+      
+      
+      <pre>// each thread does this<br>while ( pi.hasNext() ) {<br>  	try {<br>	...<br>    	// Exception thrown<br>    	...<br>  	} catch(FileNotFoundException fe) {<br>    		// no thread will stop, just record exception<br>    		pi.register(fe);<br>  	} catch (TooManyThreadsException te) {<br>    		pi.register(te);    // disk contention, reduce thread count<br>    		pi.localBreak();    // current thread will stop<br>  	} catch (DiskFullException de) {<br>    		pi.register(de);    // full disk, might need to clean up<br>    		pi.globalBreak();   // all other iterations should stop<br>  	}<br>}<br><br>// finally, when all threads complete<br>ParIteratorException[] piExceptions = pi.getExceptions();<br><br>for (int i = 0; i &lt; piExceptions.length; i++) {<br>  	ParIteratorException pie = piExceptions[i];<br><br>  	// object for iteration in which exception was encountered<br>  	Object iteration = pie.getIteration();<br><br>  	// thread executing that iteration<br>  	Thread thread = pie.getThread();<br><br>  	// actual exception thrown<br>  	Exception e = pie.getException();<br><br>  	...<br><br>  	// print exact location of exception<br>  	e.printStackTrace();<br><br>  	...<br>}<br></pre>
+
+
+
+
+This
+example shows, depending on the exception encountered, the di&#64256;erent
+possible behaviour. In some cases, we only wish to record the exception
+and then continue processing the other elements. Whereas in other
+cases, we may wish to either cancel the current thread or all threads.
+Even if the programmer does not wish to use the register() method
+provided, they must at least catch the exceptions so that the thread
+does not terminate before it has a chance to inform the Parallel
+Iterator (otherwise the other threads will continue waiting for it to
+complete).<br>
+
+
+
+
+      </div>
+
+
+
+
+      
+      
+      
+      
+      <h2><a name="3._Further_information"></a>3. &nbsp;Downloads and further information</h2>
+
+
+      
+      
+      <h3>I want to use the Parallel Iterator!</h3>
+
+
+Once you agree to the terms of the <a href="license.html">license</a>, you may <a href="pariterator.jar">download</a> and use the Parallel Iterator.<br>
+
+
+      <br>
+
+
+      
+      
+      <h3>
+The API Specification </h3>
+
+
+You may browse these <a href="doc/index.html">online here</a> or download for <a href="pariterator_docs.zip">offline use</a>.<br>
+
+
+      <br>
+
+
+      
+      
+      <h3>Complete coverage of the Parallel Iterator</h3>
+
+
+For&nbsp;complete coverage of&nbsp;the&nbsp;Parallel Iterator, please refer to the following publication:<br>
+
+
+      <br>
+
+
+
+
+      
+      N.
+Giacaman and O. Sinnen. <a href="http://www.ece.auckland.ac.nz/%7Esinnen/articles/Giacaman2008pip-tr.pdf">Parallel
+Iterator for parallelising
+object-oriented applications</a>
+      
+      
+      <ul>
+
+
+
+
+        
+
+      
+      
+      
+      
+      </ul>
+
+
+
+      
+      
+      
+      
+      <h2><a name="People"></a>4. &nbsp;People</h2>
+
+
+
+
+The Parallel Iterator concept was founded and developed by <a href="http://www.ece.auckland.ac.nz/%7Engia003">Nasser Giacaman</a> and <a href="http://www.ece.auckland.ac.nz/%7Esinnen">Oliver Sinnen</a>. <br>
+
+      <br>
+
+Other contributors include Lama Akeila and Wafaa Humadi.</td>
+
+
+
+
+
+    </tr>
+
+
+
+
+
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+<br>
+
+
+
+
+
+</body></html>
