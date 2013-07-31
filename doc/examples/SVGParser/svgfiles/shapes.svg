@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<svg width="300" height="200" version="1.1">
+    <g id="background" visibility="visible" >
+        <rect x="0" y="0" width="300" height="200"
+            style="fill:rgb(0,0,25);"/>
+        <g id="eye" visibility="visible">
+            <ellipse cx="150" cy="100" rx="150" ry="100"
+                style="fill:rgb(203,250,110)"/>
+            <circle cx="150" cy="100" r="100" 
+                style="fill:rgb(0,30,25)"/>
+        </g>
+    </g>
+</svg> 
