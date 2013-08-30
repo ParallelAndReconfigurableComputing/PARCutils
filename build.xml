@@ -83,7 +83,7 @@
  		 ================================= -->
 
 	<!-- target: resolve -->
-    <target name="resolve" depends="" description="--> retrieve dependencies with ivy">
+    <target name="resolve" depends="" description="retrieve dependencies with ivy">
         <ivy:retrieve />
     </target>
 
