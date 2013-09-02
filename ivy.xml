@@ -1,5 +1,9 @@
-<ivy-module version="2.0">
-	<info organisation="org.apache" module="hello-ivy"/>
+<!-- This version number should be the same as the one in the build.xml file.
+Normally, no need to change it. -->
+<ivy-module version="2.3">
+	<!-- Modify this part accordingly. -->
+	<info organisation="nz.ac.auckland" module="ParaIterator"/>
+	<!-- Search for artifact info on http://search.maven.org/ -->
 	<dependencies>
 		<dependency org="junit" name="junit" rev="4.11"/>
 	</dependencies>
