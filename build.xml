@@ -75,8 +75,17 @@
 		</junit>
 	</target>
 
-	<target name="build" depends="compile" description="Build .jar file.">
-		<jar destfile="${target.dir}/${ant.project.name}_${version}.jar" basedir="${target.classes.main.dir}"/>
+	<target name="build" depends="compile" description="Build .jar file without any dependencies.">
+		<jar destfile="${target.dir}/${ant.project.name}-${version}.jar">
+			<fileset dir="${target.classes.main.dir}"/>
+		</jar>
+	</target>
+
+	<target name="pack" depends="compile" description="Build .jar file with all dependencies.">
+		<jar destfile="${target.dir}/${ant.project.name}-${version}-pack.jar">
+			<fileset dir="${target.classes.main.dir}"/>
+			<fileset dir="${lib.dir}"/>
+		</jar>
 	</target>
 
 	<target name="main" depends="compile, test" description="Compile and Test.">
