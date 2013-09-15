@@ -11,13 +11,17 @@
 	<property name="src.dir" location="src"/>
 	<property name="test.dir" location="test"/>	
 
-	<property name="target.dir" location="target"/>
+	<property name="target.dir" location="bin"/>
 	<property name="target.classes.main.dir" location="${target.dir}/classes/main"/>
 	<property name="target.classes.test.dir" location="${target.dir}/classes/test"/>
 	<property name="target.report.dir" location="${target.dir}/report"/>
+	<property name="target.docs.dir" location="${target.dir}/docs"/>
+	<property name="target.release.dir" location="${target.dir}/release"/>
+
+	<property name="target.name" value="${ant.project.name}-${version}"/>
+
 
 	<property name="lib.dir" location="lib" />
-	<property name="bin.dir" location="bin" />
 
 
 	<!-- Dependencies that cannot be fetched from central repository -->
@@ -49,6 +53,8 @@
 		<mkdir dir="${target.classes.main.dir}"/>
 		<mkdir dir="${target.classes.test.dir}"/>
 		<mkdir dir="${target.report.dir}"/>
+		<mkdir dir="${target.docs.dir}"/>
+		<mkdir dir="${target.release.dir}"/>
 	</target>
 
 	<target name="compile" depends="clean, makedir, resolve" description="Compiles the java code">
@@ -81,11 +87,27 @@
 		</jar>
 	</target>
 
-	<target name="pack" depends="compile" description="Build .jar file with all dependencies.">
-		<jar destfile="${target.dir}/${ant.project.name}-${version}-pack.jar">
+	<target name="package-all" depends="compile, package-src, package-doc" description="Build .jar file with all dependencies. package sources and javadoc.">
+		<jar destfile="${target.release.dir}/${target.name}.jar">
 			<fileset dir="${target.classes.main.dir}"/>
 			<fileset dir="${lib.dir}"/>
 		</jar>
+	</target>
+
+	<target name="doc" depends="compile" description="Generate Javadoc.">
+		<javadoc packagenames="*" sourcepath="${src.dir}" destdir="${target.docs.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<target name="package-doc" depends="doc" description="package Javadoc.">
+		<jar destfile="${target.release.dir}/${target.name}-javadoc.jar" basedir="${target.docs.dir}" />
+	</target>
+
+	<target name="package-src" description="package sources.">
+		<jar destfile="${target.release.dir}/${target.name}-sources.jar" basedir="${src.dir}" />
 	</target>
 
 	<target name="main" depends="compile, test" description="Compile and Test.">
