@@ -3,8 +3,12 @@ Normally, no need to change it. -->
 <ivy-module version="2.3">
 	<!-- Modify this part accordingly. -->
 	<info organisation="nz.ac.auckland" module="ParaIterator"/>
+	<configurations>
+        <conf name="main" description="Jars that are included from packing."/>
+        <conf name="test" description="Jars that are excluded from packing."/>
+    </configurations>
 	<!-- Search for artifact info on http://search.maven.org/ -->
 	<dependencies>
-		<dependency org="junit" name="junit" rev="4.11"/>
+		<dependency org="junit" name="junit" rev="4.11" conf="test->default"/>
 	</dependencies>
 </ivy-module>

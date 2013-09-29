@@ -22,18 +22,19 @@
 
 
 	<property name="lib.dir" location="lib" />
-
+	<property name="lib.test.dir" location="lib/test" />
+	<property name="lib.main.dir" location="lib/" />
 
 	<!-- Dependencies that cannot be fetched from central repository -->
 	<path id="build.class.path">
-		<fileset dir="${lib.dir}">
-			<include name="**/*.jar" />
+		<fileset dir="${lib.main.dir}">
+			<include name="*.jar" />
 		</fileset>
 	</path>
 
 	<!-- For JUnit tests. -->
 	<path id="junit.class.path">
-		<fileset dir="${lib.dir}">
+		<fileset dir="${lib.test.dir}">
 			<include name="**/*.jar" />
 		</fileset>
 		<pathelement location="${target.classes.main.dir}" />
@@ -90,7 +91,7 @@
 	<target name="package-all" depends="compile, package-src, package-doc" description="Build .jar file with all dependencies. package sources and javadoc.">
 		<jar destfile="${target.release.dir}/${target.name}.jar">
 			<fileset dir="${target.classes.main.dir}"/>
-			<fileset dir="${lib.dir}"/>
+			<fileset dir="${lib.main.dir}"/>
 		</jar>
 	</target>
 
@@ -122,7 +123,8 @@
 
 	<!-- target: resolve -->
     <target name="resolve" depends="" description="retrieve dependencies with ivy">
-        <ivy:retrieve />
+        <ivy:retrieve conf="main" pattern="${lib.main.dir}/[artifact].[ext]"/>
+        <ivy:retrieve conf="test" pattern="${lib.test.dir}/[artifact].[ext]"/>
     </target>
 
     <!-- Change this version number for getting newer version of ivy -->
