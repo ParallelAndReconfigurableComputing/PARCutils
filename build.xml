@@ -82,7 +82,7 @@
 	</target>
 
 	<target name="build" depends="compile" description="Build .jar file without any dependencies.">
-		<jar destfile="${target.dir}/${ant.project.name}-${version}.jar">
+		<jar destfile="${target.release.dir}/${target.name}-no-dep.jar">
 			<fileset dir="${target.classes.main.dir}"/>
 		</jar>
 	</target>
