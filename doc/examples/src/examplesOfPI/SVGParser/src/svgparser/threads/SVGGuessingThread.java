@@ -4,7 +4,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import pi.UniqueThreadIdGenerator;
 import pi.reductions.Reducible;
 import svgparser.shapes.Circle;
 import svgparser.shapes.Color;
@@ -75,7 +74,6 @@ public class SVGGuessingThread extends Thread {
 	
 	@Override
 	public void run() {
-//		int tid = UniqueThreadIdGenerator.getCurrentThreadId();
 
 		int numCircles = 0;
 		int numSquares = 0;

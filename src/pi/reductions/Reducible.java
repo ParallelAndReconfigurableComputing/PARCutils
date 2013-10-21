@@ -21,7 +21,7 @@ package pi.reductions;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
-import pi.UniqueThreadIdGenerator;
+import pi.util.ThreadID;
 
 /**
  *	Defines a Reducible. This essentials behaves like a thread-local variable, with the addition of a reduction function at the end
@@ -42,7 +42,7 @@ public class Reducible<E> {
 	private E initialValue = null;
 	
 	private E reducedValue = null;
-	
+
 	/**
 	 * A new <code>Reducible</code> without an initial value for any of the threads. Therefore, each thread must call
 	 * {@link #set(Object)} before attempting to {@link #get()} its thread-local value. 
@@ -63,7 +63,7 @@ public class Reducible<E> {
 	 * @param value		The value to set for the current thread.
 	 */
 	public void set(E value) {
-		int tid = UniqueThreadIdGenerator.getCurrentThreadId();
+		int tid = ThreadID.getStaticID();
 		threadValues.put(tid, value);
 	}
 	
@@ -76,7 +76,7 @@ public class Reducible<E> {
 	 * no value has been {@link #set(Object)} for the current thread.
 	 */
 	public E get() {
-		int tid = UniqueThreadIdGenerator.getCurrentThreadId();
+		int tid = ThreadID.getStaticID();
 		if (!threadValues.containsKey(tid)) {
 			if (initialValue == null)
 				throw new RuntimeException("Attempting to get thread-local value of Reducible without first being initialised!");

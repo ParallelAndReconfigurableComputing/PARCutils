@@ -13,7 +13,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import pi.ParIteratorAbstract;
-import pi.UniqueThreadIdGenerator;
 
 /**
  * A Parallel Iterator to traverse a DOM Document.
@@ -66,7 +65,7 @@ public class DomParIterator extends ParIteratorAbstract<Node> {
 	
 	@Override
 	public boolean hasNext() {
-		int tid = UniqueThreadIdGenerator.getCurrentThreadId();
+		int tid = threadID.get();
 		
 		if (iShouldBreak[tid].get()) {
 			
@@ -222,7 +221,7 @@ public class DomParIterator extends ParIteratorAbstract<Node> {
 		}
 		if (lastNodeTaken.get() != null) {
 			//-- there was a node taken, therefore assume it has been completed, so enqueue it's children
-			enqueueChildrenNodes(lastNodeTaken.get(), UniqueThreadIdGenerator.getCurrentThreadId());
+			enqueueChildrenNodes(lastNodeTaken.get(), threadID.get());
 		}
 		return list;
 	}

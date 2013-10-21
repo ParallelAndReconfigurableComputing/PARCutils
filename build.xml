@@ -2,7 +2,7 @@
 <project name="ParaIterator" xmlns:ivy="antlib:org.apache.ivy.ant" default="main" basedir=".">
 
 	<!-- Version convention: [release].[add new features].[bug fixed] -->
-	<property name="version" value="0.9.1"/>
+	<property name="version" value="1.0.0"/>
 
 	<!-- =================================
 	Properties that don't usually change from here below.
@@ -76,7 +76,7 @@
 			<formatter type="xml" />
 			<batchtest todir="${target.report.dir}">
 				<fileset dir="${test.dir}">
-					<include name="**/*Test*.java" />
+					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
 		</junit>

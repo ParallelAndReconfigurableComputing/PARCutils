@@ -19,6 +19,8 @@
 
 package pi;
 
+import pi.util.ThreadID;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.*;
@@ -77,7 +79,7 @@ public class BookKeeping<V> {
 	public boolean removeIfNotTaken(Object o) {
 		
 		if(breakAll.get() == false){
-			int id = UniqueThreadIdGenerator.getCurrentThreadId();
+			int id = ThreadID.getStaticID();
 			Object test = markIfNotAlreadyMarked(o);
 			if (test == null) {
 				return true; // success
@@ -133,7 +135,7 @@ public class BookKeeping<V> {
 	}
 	
 	public int generateUniqueColour(int iterationsCount) {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = ThreadID.getStaticID();
 		int x = (iterationsCount * numOfThreads) + id;
 		return x;
 	}

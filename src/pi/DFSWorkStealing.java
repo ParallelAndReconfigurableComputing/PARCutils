@@ -80,7 +80,7 @@ public class DFSWorkStealing<V> extends ParIteratorAbstract<V> {
 	// This method returns TRUE if there is still available vertex in the
 	// iterator (i.e. unvisited vertex), else returns FALSE
 	public boolean hasNext() {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 
 		ArrayList<GraphAdapterInterface> successors;
 		if (breakAll.get() == false) {
@@ -145,7 +145,7 @@ public class DFSWorkStealing<V> extends ParIteratorAbstract<V> {
 
 	// This method returns a vertex assigned to a specific thread 
 	public V next() {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 		return (V) buffer[id][0];
 	}
 
@@ -157,12 +157,6 @@ public class DFSWorkStealing<V> extends ParIteratorAbstract<V> {
 
 	@Override
 	public boolean localBreak() {
-		throw new UnsupportedOperationException(
-				"Local break not supported yet for Graphs");
-	}
-
-	@Override
-	protected List<V> getUnprocessedElements() {
 		throw new UnsupportedOperationException(
 				"Local break not supported yet for Graphs");
 	}

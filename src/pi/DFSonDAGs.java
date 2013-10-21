@@ -112,7 +112,7 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 	// This method returns TRUE if there is still available vertex in the
     // iterator (i.e. unvisited vertex), else returns FALSE
 	public boolean hasNext() {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 
 		ArrayList<GraphAdapterInterface> successors;
 		if (breakAll.get() == false) {
@@ -170,7 +170,7 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 	
 	// Returns a node from the stack of the target
 	private V stealNode(int target) {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 		V currentStackNode =  localStack.get(target).pollLast();
 		if(currentStackNode != null){
 			// checks that all the parents of the node are processed, if not
@@ -192,7 +192,7 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 	
 	// Returns a node from the local stack of the thread
 	private V getLocalNode() {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 		V currentStackNode =  localStack.get(id).pollLast();
 		// checks that all the parents of the node are processed, if not
 		// add it to waiting list and call method again of the target
@@ -211,7 +211,7 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 
 	// Threads call this method to exit
 	private void exit(CountDownLatch latch) {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 	    if (processedNodesNum >= numTreeNodes) {
 			// All Nodes have been traversed
 		    permissionTable = giveAllPermission(permissionTable);
@@ -235,7 +235,7 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 	
 	// This method returns the node assigned to a specific thread 
 	public V next() {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 		return (V) buffer[id][0];
 	}
 
@@ -250,11 +250,4 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 		throw new UnsupportedOperationException(
 				"Local break not supported yet for Graphs");
 	}
-
-	@Override
-	protected List<V> getUnprocessedElements() {
-		throw new UnsupportedOperationException(
-				"Local break not supported yet for Graphs");
-	}
-
 }

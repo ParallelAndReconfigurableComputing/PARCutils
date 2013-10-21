@@ -113,7 +113,7 @@ public class DFSonDAGBottomTop<V> extends ParIteratorAbstract<V> {
 		ArrayList<V> successors;
 		if (breakAll.get() == false) {
 
-			int id = UniqueThreadIdGenerator.getCurrentThreadId();
+			int id = threadID.get();
 
 			while (permissionTable[id][0] == false) {
 				System.currentTimeMillis();
@@ -311,7 +311,7 @@ public class DFSonDAGBottomTop<V> extends ParIteratorAbstract<V> {
 
 	// This method returns a vertex assigned to a specific thread 
 	public V next() {
-		int id = UniqueThreadIdGenerator.getCurrentThreadId();
+		int id = threadID.get();
 		return (V) buffer[id][0];
 	}
 
@@ -324,12 +324,6 @@ public class DFSonDAGBottomTop<V> extends ParIteratorAbstract<V> {
 
 	@Override
 	public boolean localBreak() {
-		throw new UnsupportedOperationException(
-				"Local break not supported yet for Graphs");
-	}
-
-	@Override
-	protected List<V> getUnprocessedElements() {
 		throw new UnsupportedOperationException(
 				"Local break not supported yet for Graphs");
 	}

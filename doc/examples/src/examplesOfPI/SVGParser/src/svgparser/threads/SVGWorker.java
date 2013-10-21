@@ -2,8 +2,6 @@ package svgparser.threads;
 
 import org.w3c.dom.Element;
 
-import pi.UniqueThreadIdGenerator;
-
 import collections.Node;
 import collections.pi.NodeParIterator;
 
@@ -17,7 +15,7 @@ public class SVGWorker extends Thread {
 	
 	@Override
 	public void run() {
-		int tid = UniqueThreadIdGenerator.getCurrentThreadId();
+		int tid = ThreadID.getStaticID();
 		
 		while (pi.hasNext()) {
 			Node<Element> n = pi.next();

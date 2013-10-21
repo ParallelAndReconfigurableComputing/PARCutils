@@ -163,7 +163,7 @@ public class ParIteratorFactory<E> {
 	 * mechanism. The Iterator works on Trees and Directed Acyclic Graphs (DAGs).
 	 * It returns nodes in DFS order from top to bottom.
 	 * 
-	 * @param graph			The tree or DAG to be traversed in DFS
+	 * @param tree			The tree or DAG to be traversed in DFS
 	 * @param root			The starting node of the search
 	 * @param numOfThreads	The number of threads that will be sharing 
 	 *                      the DFS Parallel Iterator.
@@ -204,23 +204,13 @@ public class ParIteratorFactory<E> {
 	private static<E> ParIterator<E> getIterator(Collection<E> collection, ParIterator.Schedule schedulePol, int chunksize, int threadCount, boolean ignoreBarrier) {
 		switch (schedulePol) {
 			case STATIC:
-				if (collection instanceof RandomAccess) {
-					return new StaticParIterator<E>((java.util.List<E>) collection, chunksize, threadCount, ignoreBarrier);
-				} else {
-					return new StaticParIterator<E>((E[])collection.toArray(), chunksize, threadCount, ignoreBarrier);
-				}
+				return new StaticParIterator<E>(collection, chunksize, threadCount, ignoreBarrier);
 			case GUIDED:
-				if (collection instanceof RandomAccess) {
-					return new GuidedParIteratorRandomAccess<E>((java.util.List<E>) collection, chunksize, threadCount, ignoreBarrier);
-				} else {
-					return new GuidedParIteratorSequential<E>(collection, chunksize, threadCount, ignoreBarrier);
-				}
+				return new GuidedParIterator<E>(collection, chunksize, threadCount, ignoreBarrier);
 			case DYNAMIC:
-				if (collection instanceof RandomAccess) {
-					return new DynamicParIteratorRandomAccess<E>((java.util.List<E>) collection, chunksize, threadCount, ignoreBarrier);
-				} else {
-					return new DynamicParIteratorSequential<E>(collection, chunksize, threadCount, ignoreBarrier);
-				}
+				return new DynamicParIterator<E>(collection, chunksize, threadCount, ignoreBarrier);
+			case MEMORYAWARE:
+				return new MemoryAwareParIterator<E>(collection, chunksize, threadCount, ignoreBarrier);
 			default:
 				throw new RuntimeException("Unknown schedule: "+ schedulePol);
 		}

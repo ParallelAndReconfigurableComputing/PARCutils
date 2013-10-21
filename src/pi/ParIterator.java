@@ -60,7 +60,13 @@ public interface ParIterator<E> extends Iterator<E> {
 		/**
 		 * 	Elements are distributed amongst threads before any iteration begins using a fixed chunk size.
 		 */
-		STATIC };
+		STATIC,
+
+		/**
+		 * Similar to STATIC, but with elements resorted by memory location.
+		 */
+		MEMORYAWARE,
+	};
 	
 	/**
 	 * 	The default chunk size, depending on the scheduling policy.    
@@ -82,9 +88,7 @@ public interface ParIterator<E> extends Iterator<E> {
 	 * @see		#next()
 	 */
 	public boolean hasNext();
-	
-	void setThreadIdGenerator(UniqueThreadIdGeneratorNonStatic uniqueThreadIdGenerator);
-	
+
 	/**
 	 * Returns an element for the current thread to process. A thread must not call this method unless it has previously called 
 	 * <code>hasNext()</code> (and received <code>true</code>).
@@ -151,5 +155,16 @@ public interface ParIterator<E> extends Iterator<E> {
 	 * @throws 	UnsupportedOperationException If the Parallel Iterator does not support this.
 	 */
 	public void remove();
+
+	/**
+	 * Reset ParIterator for reuse.
+	 */
+	public void reset();
+
+	/**
+	 * For test.
+	 * @return thread ID.
+	 */
+	public int getID();
 	
 }
