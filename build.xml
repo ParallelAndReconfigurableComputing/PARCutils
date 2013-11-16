@@ -108,7 +108,7 @@
 	</target>
 
 	<target name="package-src" description="package sources.">
-		<jar destfile="${target.release.dir}/${target.name}-sources.jar" basedir="${src.dir}" />
+		<jar destfile="${target.release.dir}/${target.name}-src.jar" basedir="${src.dir}" />
 	</target>
 
 	<target name="main" depends="compile, test" description="Compile and Test.">
