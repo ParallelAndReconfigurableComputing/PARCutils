@@ -1,17 +1,11 @@
-<!---
-This is an example of change log, please follow the format specified below.
-(When the real change log is added, please delete this comment.)
-
-1.1.0 / 2013-05-15
+1.0.1 (2013-12)
 ===
+- default chunk size bug fixed
 
-- bug xxx fixed
-- xxx feature added
-
-1.0.0 / 2013-01-01
+1.0.0 (2013-07)
 ===
+- Refactoring the PI
+- Trim out the redundant logic and method
 
-- first release
-
--->
-
+0.9.8
+===
