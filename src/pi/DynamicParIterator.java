@@ -19,6 +19,9 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 
 	public DynamicParIterator(final Collection<E> collection, final int chunkSize, final int numOfThreads, final boolean ignoreBarrier) {
 		super(collection, chunkSize, numOfThreads, ignoreBarrier);
+		if (this.chunkSize <= 0) {
+			this.chunkSize = (int) Math.ceil((double) collection.size() / numOfThreads);
+		}
 		chunkIterator = partition(collection, chunkSize, numOfThreads);
 	}
 

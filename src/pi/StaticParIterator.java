@@ -21,8 +21,11 @@ public class StaticParIterator<E> extends ParIteratorAbstract<E> {
 
 	public StaticParIterator(Collection<E> collection, int chunkSize, int numOfThreads, boolean ignoreBarrier) {
 		super(collection, chunkSize, numOfThreads, ignoreBarrier);
+		if (this.chunkSize <= 0) {
+			this.chunkSize = (int) Math.ceil((double) collection.size() / numOfThreads);
+		}
 		data = formatData(collection);
-		chunks = Lists.partition(data, chunkSize);
+		chunks = Lists.partition(data, this.chunkSize);
 		localChunks = new TLocal<List<List<E>>>(threadID);
 		for (int i = 0; i < chunks.size(); i++) {
 			int tid = i % numOfThreads;
