@@ -17,10 +17,10 @@ public class FunctionalTest {
 
 	@Test
 	public void arrayListTest() {
-//		arrayList(ParIterator.Schedule.MEMORYAWARE);
+		arrayList(ParIterator.Schedule.MEMORYAWARE);
 		arrayList(ParIterator.Schedule.STATIC);
-//		arrayList(ParIterator.Schedule.DYNAMIC);
-//		arrayList(ParIterator.Schedule.GUIDED);
+		arrayList(ParIterator.Schedule.DYNAMIC);
+		arrayList(ParIterator.Schedule.GUIDED);
 	}
 
 	public void arrayList(ParIterator.Schedule schedule) {
@@ -36,7 +36,6 @@ public class FunctionalTest {
 		TestingTools.dataDistributionTest(iterator, numOfThreads, schedule.name() + ", ArrayList");
 	}
 
-	@Ignore
 	@Test
 	public void resetTest() {
 		reset(ParIterator.Schedule.STATIC);

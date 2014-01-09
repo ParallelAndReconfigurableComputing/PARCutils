@@ -15,7 +15,7 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 
 	private Iterator<List<E>> chunkIterator = null;
 
-	protected TLocal<Iterator<E>> localIterator = null;
+	final protected TLocal<Iterator<E>> localIterator = new TLocal<Iterator<E>>(threadID);
 
 	public DynamicParIterator(final Collection<E> collection, final int chunkSize, final int numOfThreads, final boolean ignoreBarrier) {
 		super(collection, chunkSize, numOfThreads, ignoreBarrier);
