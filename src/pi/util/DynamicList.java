@@ -33,6 +33,7 @@ public class DynamicList implements List<Integer>, RandomAccess {
 	private int start;
 	private int size;
 	private int increment;
+	private DynamicListIterator iter;
 	
 	/**
 	 * Create a new DynamicList. Must specify the integer range of the "contained" elements.
@@ -45,6 +46,7 @@ public class DynamicList implements List<Integer>, RandomAccess {
 		this.start = start;
 		this.size = size;
 		this.increment = increment;
+
 	}
 	
 	@Override
@@ -99,9 +101,31 @@ public class DynamicList implements List<Integer>, RandomAccess {
 
 	@Override
 	public Iterator<Integer> iterator() {
-		throw new UnsupportedOperationException();
+//		throw new UnsupportedOperationException();
+		return new DynamicListIterator();
 	}
-
+	
+	class DynamicListIterator implements Iterator{
+		private int current = 0;
+		@Override
+		public boolean hasNext() {
+			return current+1 <= size;
+			
+		}
+	
+		@Override
+		public Object next() {
+			current++;
+			return DynamicList.this.get(current);
+		}
+	
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+			
+		}
+		
+	}
 	@Override
 	public int lastIndexOf(Object o) {
 		throw new UnsupportedOperationException();
@@ -149,7 +173,9 @@ public class DynamicList implements List<Integer>, RandomAccess {
 
 	@Override
 	public List<Integer> subList(int fromIndex, int toIndex) {
-		throw new UnsupportedOperationException();
+//		throw new UnsupportedOperationException();
+//		System.out.println(fromIndex+","+toIndex);
+		return new DynamicList(fromIndex, toIndex-fromIndex, this.increment);
 	}
 
 	@Override

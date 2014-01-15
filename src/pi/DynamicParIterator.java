@@ -22,7 +22,7 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 		if (this.chunkSize <= 0) {
 			this.chunkSize = (int) Math.ceil((double) collection.size() / numOfThreads);
 		}
-		chunkIterator = partition(collection, chunkSize, numOfThreads);
+		chunkIterator = partition(collection, this.chunkSize, numOfThreads);
 	}
 
 	protected Iterator<List<E>> partition(
