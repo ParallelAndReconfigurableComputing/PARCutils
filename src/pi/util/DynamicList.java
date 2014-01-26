@@ -106,7 +106,7 @@ public class DynamicList implements List<Integer>, RandomAccess {
 	}
 	
 	class DynamicListIterator implements Iterator{
-		private int current = 0;
+		private int current = -1;
 		@Override
 		public boolean hasNext() {
 			return current+1 < size;
@@ -173,9 +173,8 @@ public class DynamicList implements List<Integer>, RandomAccess {
 
 	@Override
 	public List<Integer> subList(int fromIndex, int toIndex) {
-//		throw new UnsupportedOperationException();
-//		System.out.println(fromIndex+","+toIndex);
-		return new DynamicList(fromIndex, toIndex-fromIndex+1, this.increment);
+		int init = this.get(fromIndex);
+		return new DynamicList(init, toIndex-fromIndex, this.increment);
 	}
 
 	@Override
