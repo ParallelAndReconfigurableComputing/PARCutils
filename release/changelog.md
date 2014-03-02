@@ -1,3 +1,7 @@
+1.0.2 (2014-01)
+===
+- Support for DynamicList.subList and DynamicList.iterator added
+
 1.0.1 (2013-12)
 ===
 - default chunk size bug fixed
