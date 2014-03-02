@@ -68,6 +68,15 @@
 		</javac>
 	</target>
 
+	<target name="run.example" depends="compile" description="Run the example">
+		<java classname="pi.MainApp">
+        	<classpath>
+				<pathelement location="${target.classes.main.dir}" />
+				<pathelement location="${target.classes.test.dir}" />
+        	</classpath>
+    	</java>
+	</target>	
+	
 	<!-- Output is XML, could also be plain-->
 	<target name="test" depends="compile" description="Run the JUnit Tests.">
 		<!-- <echoproperties/> -->

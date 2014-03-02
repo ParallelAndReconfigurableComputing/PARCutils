@@ -71,7 +71,8 @@ public class ParIteratorFactory<E> {
 	/**
 	 * A convenience method for {@link #createParIterator(Collection, int, ParIterator.Schedule, int)}.
 	 * <p>
-	 * Returns a Parallel Iterator with a dynamic scheduling policy and chunk size of 1.
+	 * Returns a Parallel Iterator with a dynamic scheduling policy, and the default chunk size for the selected
+	 * scheduling policy, which is collection.size() / threadCount for ParIterator.Schedule.DYNAMIC.
 	 * 
 	 * @param collection	The collection that contains the elements to be shared amongst the threads.
 	 * @param threadCount	The number of threads that will be sharing the Parallel Iterator.
