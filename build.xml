@@ -105,10 +105,18 @@
 	</target>
 
 	<target name="doc" depends="compile" description="Generate Javadoc.">
-		<javadoc packagenames="*" sourcepath="${src.dir}" destdir="${target.docs.dir}">
-			<fileset dir="${src.dir}">
-				<include name="**/*.java" />
-			</fileset>
+	    <delete dir="${target.docs.dir}" />
+		<javadoc
+		    destdir="${target.docs.dir}"
+		    use="true">
+			<fileset dir="${src.dir}" defaultexcludes="yes">
+			    <include name="pi/util/DynamicList.java"/>
+      			<include name="pi/ParIterator.java"/>
+      			<include name="pi/exceptions/ParIteratorException.java"/>
+      			<include name="pi/ParIteratorFactory.java"/>
+      			<include name="pi/reductions/Reduction.java"/>
+      			<include name="pi/reductions/Reducible.java"/>
+    		</fileset>
 		</javadoc>
 	</target>
 
