@@ -20,7 +20,8 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 	public DynamicParIterator(final Collection<E> collection, final int chunkSize, final int numOfThreads, final boolean ignoreBarrier) {
 		super(collection, chunkSize, numOfThreads, ignoreBarrier);
 		if (this.chunkSize <= 0) {
-			this.chunkSize = (int) Math.ceil((double) collection.size() / numOfThreads);
+			// the default chunkSize for Dynamic should be 1, which is consistent with the OpenMP specification.
+			this.chunkSize = 1;
 		}
 		chunkIterator = partition(collection, this.chunkSize, numOfThreads);
 	}

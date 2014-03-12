@@ -1,3 +1,7 @@
+1.0.3 (2014-03-12)
+===
+- Change the default chunk size for DYNAMIC Scheduling into 1, which is consistent with the OpenMP specification.
+
 1.0.2 (2014-01)
 ===
 - Support for DynamicList.subList and DynamicList.iterator added
