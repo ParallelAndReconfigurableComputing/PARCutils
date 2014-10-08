@@ -19,6 +19,8 @@
 
 package pi.reductions;
 
+import java.util.ArrayList;
+
 /**
  * Defines a reduction and includes a range of built-in reductions (only a few common ones are implemented). Users may also define their own by implementing this interface. 
  *
@@ -595,6 +597,23 @@ public interface Reduction<E> {
 		@Override
 		public Boolean reduce(Boolean first, Boolean second) {
 			return first || second;
+		}
+	};
+	
+	/**
+	 * Combines the elements of two <code>arrays</code> into one
+	 * */
+	public static Reduction<Object[]> ArrayCOMBINE = new Reduction<Object[]>(){
+		@Override
+		public Object[] reduce(Object[] firstArray, Object[] secondArray){
+			ArrayList<Object> list = new ArrayList<Object>();
+			for (Object obj : firstArray){
+				list.add(obj);
+			}
+			for (Object obj : secondArray){
+				list.add(obj);
+			}
+			return (list.toArray());
 		}
 	};
 	
