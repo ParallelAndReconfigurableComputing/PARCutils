@@ -6,6 +6,7 @@ import pi.util.Flags;
 import pi.util.TLocal;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Author: xiaoxing
@@ -54,6 +55,13 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 				public void remove() {
 					throw new UnsupportedOperationException();
 				}
+
+				@Override
+				public void forEachRemaining(Consumer<? super List<E>> action) {
+					// TODO Auto-generated method stub
+					/*added to suppress compiler errors*/
+					return;
+				}
 			};
 
 		} else {
@@ -88,6 +96,13 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 				@Override
 				public void remove() {
 					throw new UnsupportedOperationException();
+				}
+
+				@Override
+				public void forEachRemaining(Consumer<? super List<E>> action) {
+					// TODO Auto-generated method stub
+					/*added to suppress compiler errors*/
+					return;
 				}
 			};
 		}
@@ -153,5 +168,12 @@ public class DynamicParIterator<E> extends ParIteratorAbstract<E> {
 		reclaimedElements.clear();
 		chunkIterator = partition(collection, chunkSize, numOfThreads);
 		flags.resetAll();
+	}
+
+	@Override
+	public void forEachRemaining(Consumer<? super E> action) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
 	}
 }

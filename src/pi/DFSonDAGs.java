@@ -23,6 +23,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 
 
 
@@ -249,5 +250,12 @@ public class DFSonDAGs<V> extends ParIteratorAbstract<V> {
 	public boolean localBreak() {
 		throw new UnsupportedOperationException(
 				"Local break not supported yet for Graphs");
+	}
+
+	@Override
+	public void forEachRemaining(Consumer<? super V> action) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
 	}
 }

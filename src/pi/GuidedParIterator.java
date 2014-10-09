@@ -1,6 +1,7 @@
 package pi;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Author: xiaoxing
@@ -47,6 +48,13 @@ public class GuidedParIterator<E> extends DynamicParIterator<E> {
 				public void remove() {
 					throw new UnsupportedOperationException();
 				}
+
+				@Override
+				public void forEachRemaining(Consumer<? super List<E>> action) {
+					// TODO Auto-generated method stub
+					/*added to suppress compiler errors*/
+					return;
+				}
 			};
 
 		} else {
@@ -86,6 +94,13 @@ public class GuidedParIterator<E> extends DynamicParIterator<E> {
 				@Override
 				public void remove() {
 					throw new UnsupportedOperationException();
+				}
+
+				@Override
+				public void forEachRemaining(Consumer<? super List<E>> action) {
+					// TODO Auto-generated method stub
+					/*added to suppress compiler errors*/
+					return;
 				}
 			};
 		}

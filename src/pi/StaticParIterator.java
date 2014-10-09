@@ -5,6 +5,7 @@ import pi.util.Flags;
 import pi.util.TLocal;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Author: xiaoxing
@@ -123,5 +124,12 @@ public class StaticParIterator<E> extends ParIteratorAbstract<E> {
 		localChunkIterator.setAll(null);
 		localIterator.setAll(null);
 		flags.resetAll();
+	}
+
+	@Override
+	public void forEachRemaining(Consumer<? super E> action) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
 	}
 }

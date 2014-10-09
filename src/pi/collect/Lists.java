@@ -3,6 +3,14 @@ package pi.collect;
 import pi.util.VMSpec;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
+import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 import static pi.util.Preconditions.checkArgument;
 import static pi.util.Preconditions.checkElementIndex;
@@ -221,6 +229,51 @@ public final class Lists {
 		@Override public boolean isEmpty() {
 			return list.isEmpty();
 		}
+
+		@Override
+		public void replaceAll(UnaryOperator<List<T>> operator) {
+			// TODO Auto-generated method stub
+			/*added to suppress compiler errors*/
+			return;
+		}
+
+		@Override
+		public void sort(Comparator<? super List<T>> c) {
+			// TODO Auto-generated method stub
+			/*added to suppress compiler errors*/
+			return;
+		}
+
+		@Override
+		public Spliterator<List<T>> spliterator() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean removeIf(Predicate<? super List<T>> filter) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public Stream<List<T>> stream() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Stream<List<T>> parallelStream() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void forEach(Consumer<? super List<T>> action) {
+			// TODO Auto-generated method stub
+			/*added to suppress compiler errors*/
+			return;
+		}
 	}
 
 	private static class RandomAccessPartition<T> extends Partition<T>
@@ -237,6 +290,118 @@ public final class Lists {
 			public int compare(T o1, T o2) {
 				return (int) (addressMap.get(o1) - addressMap.get(o2));
 			}
+
+			@Override
+			public Comparator<T> reversed() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public Comparator<T> thenComparing(Comparator<? super T> other) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public <U> Comparator<T> thenComparing(
+					Function<? super T, ? extends U> keyExtractor,
+					Comparator<? super U> keyComparator) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public <U extends Comparable<? super U>> Comparator<T> thenComparing(
+					Function<? super T, ? extends U> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public Comparator<T> thenComparingInt(
+					ToIntFunction<? super T> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public Comparator<T> thenComparingLong(
+					ToLongFunction<? super T> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public Comparator<T> thenComparingDouble(
+					ToDoubleFunction<? super T> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			/*The following lines were causing errors dues to not implementing a super-class method!*/
+			/*
+			@Override
+			public static <T extends Comparable<? super T>> Comparator<T> reverseOrder() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T extends Comparable<? super T>> Comparator<T> naturalOrder() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T> Comparator<T> nullsFirst(
+					Comparator<? super T> comparator) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T> Comparator<T> nullsLast(
+					Comparator<? super T> comparator) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T, U> Comparator<T> comparing(
+					Function<? super T, ? extends U> keyExtractor,
+					Comparator<? super U> keyComparator) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T, U extends Comparable<? super U>> Comparator<T> comparing(
+					Function<? super T, ? extends U> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T> Comparator<T> comparingInt(
+					ToIntFunction<? super T> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T> Comparator<T> comparingLong(
+					ToLongFunction<? super T> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public static <T> Comparator<T> comparingDouble(
+					ToDoubleFunction<? super T> keyExtractor) {
+				// TODO Auto-generated method stub
+				return null;
+			}*/
 		});
 	}
 

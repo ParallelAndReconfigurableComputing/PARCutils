@@ -1,6 +1,7 @@
 package pi.collect;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 import static pi.util.Preconditions.checkArgument;
 import static pi.util.Preconditions.checkNotNull;
@@ -60,6 +61,12 @@ public final class Iterators {
 			public void remove() {
 				throw new UnsupportedOperationException();
 			}
+			@Override
+			public void forEachRemaining(Consumer<? super List<T>> action) {
+				// TODO Auto-generated method stub
+				/*added to suppress compiler errors*/
+				return;
+			}
 		};
 	}
 
@@ -100,7 +107,15 @@ public final class Iterators {
 			public void remove() {
 				throw new UnsupportedOperationException();
 			}
-		};	}
 
+			@Override
+			public void forEachRemaining(Consumer<? super List<T>> action) {
+				// TODO Auto-generated method stub
+				/*added to suppress compiler errors*/
+				return;
+			}
+		};	
+		
+	}
 
 }

@@ -1,10 +1,16 @@
 package pi.util;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 /**
  * 
@@ -124,6 +130,13 @@ public class DynamicList implements List<Integer>, RandomAccess {
 			throw new UnsupportedOperationException();
 			
 		}
+
+		@Override
+		public void forEachRemaining(Consumer action) {
+			// TODO Auto-generated method stub
+			/*added to suppress compiler errors*/
+			return;
+		}
 		
 	}
 	@Override
@@ -185,6 +198,51 @@ public class DynamicList implements List<Integer>, RandomAccess {
 	@Override
 	public <T> T[] toArray(T[] a) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean removeIf(Predicate<? super Integer> filter) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Stream<Integer> stream() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Stream<Integer> parallelStream() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void forEach(Consumer<? super Integer> action) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
+	}
+
+	@Override
+	public void replaceAll(UnaryOperator<Integer> operator) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
+	}
+
+	@Override
+	public void sort(Comparator<? super Integer> c) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
+	}
+
+	@Override
+	public Spliterator<Integer> spliterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

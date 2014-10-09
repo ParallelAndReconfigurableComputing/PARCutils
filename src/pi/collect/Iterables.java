@@ -2,6 +2,8 @@ package pi.collect;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 import static pi.util.Preconditions.checkArgument;
 import static pi.util.Preconditions.checkNotNull;
@@ -41,6 +43,19 @@ public final class Iterables {
 			public Iterator<List<T>> iterator() {
 				return Iterators.partition(iterable.iterator(), size);
 			}
+
+			@Override
+			public void forEach(Consumer<? super List<T>> action) {
+				// TODO Auto-generated method stub
+				/*added to suppress compiler errors*/
+				return;
+			}
+
+			@Override
+			public Spliterator<List<T>> spliterator() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 	}
 
@@ -52,6 +67,19 @@ public final class Iterables {
 			@Override
 			public Iterator<List<T>> iterator() {
 				return Iterators.partition(list, size);
+			}
+
+			@Override
+			public void forEach(Consumer<? super List<T>> action) {
+				// TODO Auto-generated method stub
+				/*added to suppress compiler errors*/
+				return;
+			}
+
+			@Override
+			public Spliterator<List<T>> spliterator() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		};
 	}

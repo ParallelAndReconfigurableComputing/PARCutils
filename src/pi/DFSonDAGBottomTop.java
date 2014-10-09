@@ -25,6 +25,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 
 /**
  * Date created: 16 July 2009 Last modified: 17 July 2009
@@ -326,6 +327,13 @@ public class DFSonDAGBottomTop<V> extends ParIteratorAbstract<V> {
 	public boolean localBreak() {
 		throw new UnsupportedOperationException(
 				"Local break not supported yet for Graphs");
+	}
+
+	@Override
+	public void forEachRemaining(Consumer<? super V> action) {
+		// TODO Auto-generated method stub
+		/*added to suppress compiler errors*/
+		return;
 	}
 
 }
