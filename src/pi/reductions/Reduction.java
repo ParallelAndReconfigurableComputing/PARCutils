@@ -601,7 +601,9 @@ public interface Reduction<E> {
 	};
 	
 	/**
-	 * Combines the elements of two <code>arrays</code> into one
+	 * Combines the elements of two <code>arrays</code> into one <code>array</code>
+	 * @author Mostafa Mehrabi
+	 * @since  9/10/2014
 	 * */
 	public static Reduction<Object[]> ArrayCOMBINE = new Reduction<Object[]>(){
 		@Override
@@ -616,5 +618,7 @@ public interface Reduction<E> {
 			return (list.toArray());
 		}
 	};
+	
+	//public static Reduction<>
 	
 }

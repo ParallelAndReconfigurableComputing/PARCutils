@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ParallelIterator" default="main" basedir=".">
+	<!-- Setting up the variables that are going to be used later -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="src.dir"   value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="dist.dir"  value="dist"/>
+	<property name="docs.dir"  value="docs"/>
+	
+	<!-- This target deletes the existing build, docs, and dist directories -->
+	<target name="clean">
+		<delete  dir="${build.dir}" />
+		<delete  dir="${dist.dir}"  />
+		<delete  dir="${docs.dir}"  />
+	</target> 
+	
+	<!-- This target creates the build, docs and dist directories -->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir} " />
+		<mkdir dir="${docs.dir} " />
+	</target>
+
+	<!-- This target compiles the java code -->
+	<target name="compile" depends="clean, makedir" >
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}"></javac>
+	</target>
+	
+	<!-- This target creates the javaDocs -->
+	<target name="docs" depends="compile">
+		<javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**"/>
+			</fileset>
+		</javadoc>
+	</target>
+	
+	<!-- This target creates the jar file -->
+	<target name="jar" depends="compile">
+		<jar destfile="${dist.dir}/ParaIterator-1.0.4.jar" basedir="${build.dir}">
+			
+		</jar>
+	</target>
+	
+	<!-- The main and default target -->
+	<target name="main" depends="compile, jar, docs">
+		<description>Main Target</description>
+	</target>
+</project>
