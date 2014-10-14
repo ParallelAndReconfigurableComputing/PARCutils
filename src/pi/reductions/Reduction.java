@@ -20,7 +20,7 @@
 package pi.reductions;
 
 import java.util.ArrayList;
-import java.util.Map;
+
 
 /**
  * Defines a reduction and includes a range of built-in reductions (only a few common ones are implemented). Users may also define their own by implementing this interface. 
