@@ -21,7 +21,6 @@ package pi.reductions;
 
 import java.util.ArrayList;
 
-
 /**
  * Defines a reduction and includes a range of built-in reductions (only a few common ones are implemented). Users may also define their own by implementing this interface. 
  *
@@ -620,5 +619,4 @@ public interface Reduction<E> {
 		}
 	};
 	
-	//public static Reduction<>	
 }

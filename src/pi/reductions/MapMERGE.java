@@ -15,18 +15,18 @@ import java.util.Map;
  *  @author Mostafa Mehrabi	
  *  @since  14/10/2014
  * */
-public class MapMERGE<K, T> implements MapReduction<K, Operable<T>> {
+public class MapMERGE<K, T> implements Reduction<Map<K, Operand<T>>> {
 
 	@Override
-	public Map<K, Operable<T>> reduce(Map<K, Operable<T>> m1, Map<K, Operable<T>> m2) {
+	public Map<K, Operand<T>> reduce(Map<K, Operand<T>> m1, Map<K, Operand<T>> m2) {
 		HashSet<K> keySetMap2 = (HashSet<K>) m2.keySet();
 	
 		for (K key : keySetMap2){
 			
-			Operable<T> value2 = m2.get(key); 
+			Operand<T> value2 = m2.get(key); 
 		    
 			if (m1.containsKey(key)){
-				Operable<T> value1 = m1.get(key);
+				Operand<T> value1 = m1.get(key);
 				if (value2!=null){
 					if (value1!=null)
 						value1.operateOn(value2);
