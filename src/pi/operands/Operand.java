@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.operands;
 
 public abstract class Operand<T> {
 	protected T operandValue;

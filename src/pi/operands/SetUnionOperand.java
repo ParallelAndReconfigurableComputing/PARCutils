@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.operands;
 
 import java.util.Set;
 /**
@@ -13,13 +13,13 @@ import java.util.Set;
  * */
 public class SetUnionOperand<T> extends Operand<Set<T>> {
 
-	SetUnionOperand(Set<T> t) {
-		super(t);
+	SetUnionOperand(Set<T> set) {
+		super(set);
 	}
 
 	@Override
-	protected Set<T> opearte(Operand<Set<T>> t) {
-		Set<T> secondOperandValue = t.getValue();
+	protected Set<T> opearte(Operand<Set<T>> setOperand) {
+		Set<T> secondOperandValue = setOperand.getValue();
 		for(T setElement : secondOperandValue)
 			operandValue.add(setElement);			
 		return operandValue;
