@@ -7,7 +7,7 @@ public class ByteBitwiseANDOperand extends Operand<Byte> {
 	}
 
 	@Override
-	protected Byte opearte(Operand<Byte> byteOperand) {
+	protected Byte operate(Operand<Byte> byteOperand) {
 		return (byte) (operandValue & byteOperand.getValue());
 	}
 }

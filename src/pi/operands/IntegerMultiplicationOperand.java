@@ -7,7 +7,7 @@ public class IntegerMultiplicationOperand extends Operand<Integer> {
 	}
 
 	@Override
-	protected Integer opearte(Operand<Integer> integerOperand) {
+	protected Integer operate(Operand<Integer> integerOperand) {
 		return operandValue * integerOperand.getValue();
 	}
 

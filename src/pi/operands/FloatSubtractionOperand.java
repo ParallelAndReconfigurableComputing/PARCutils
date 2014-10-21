@@ -7,7 +7,7 @@ public class FloatSubtractionOperand extends Operand<Float> {
 	}
 
 	@Override
-	protected Float opearte(Operand<Float> floatOperand) {
+	protected Float operate(Operand<Float> floatOperand) {
 		return operandValue - floatOperand.getValue();
 	}
 

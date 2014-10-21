@@ -7,7 +7,7 @@ public class LongSumOperand extends Operand<Long> {
 	}
 
 	@Override
-	protected Long opearte(Operand<Long> longOperand) {
+	protected Long operate(Operand<Long> longOperand) {
 		return operandValue + longOperand.getValue();
 	}
 

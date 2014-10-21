@@ -7,7 +7,7 @@ public class DoubleSubtractionOperand extends Operand<Double> {
 	}
 
 	@Override
-	protected Double opearte(Operand<Double> doubleOperand) {
+	protected Double operate(Operand<Double> doubleOperand) {
 		return operandValue - doubleOperand.getValue();
 	}
 

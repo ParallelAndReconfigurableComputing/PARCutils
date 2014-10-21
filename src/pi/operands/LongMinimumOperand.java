@@ -7,7 +7,7 @@ public class LongMinimumOperand extends Operand<Long> {
 	}
 
 	@Override
-	protected Long opearte(Operand<Long> longOperand) {
+	protected Long operate(Operand<Long> longOperand) {
 		return Math.min(operandValue, longOperand.getValue());
 	}
 

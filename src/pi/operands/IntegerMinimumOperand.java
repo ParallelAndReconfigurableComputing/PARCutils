@@ -7,7 +7,7 @@ public class IntegerMinimumOperand extends Operand<Integer> {
 	}
 
 	@Override
-	protected Integer opearte(Operand<Integer> integerOperand) {
+	protected Integer operate(Operand<Integer> integerOperand) {
 		return Math.min(operandValue, integerOperand.getValue());
 	}
 

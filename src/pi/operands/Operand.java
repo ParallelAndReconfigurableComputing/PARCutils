@@ -12,7 +12,7 @@ public abstract class Operand<T> {
 	 * @author Mostafa Mehrabi
 	 * @since  14/10/2014
 	 * */
-	protected abstract T opearte(Operand<T> operand);
+	protected abstract T operate(Operand<T> operand);
 	
 	Operand(T value){
 		operandValue = value;
@@ -27,7 +27,7 @@ public abstract class Operand<T> {
 	}
 	
 	public void operateOn(Operand<T> t){
-		operandValue = opearte(t);
+		operandValue = operate(t);
 	}
 	
 }

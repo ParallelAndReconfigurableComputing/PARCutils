@@ -7,7 +7,7 @@ public class ShortBitwiseXOROperand extends Operand<Short> {
 	}
 
 	@Override
-	protected Short opearte(Operand<Short> shortOperand) {
+	protected Short operate(Operand<Short> shortOperand) {
 		return (short) (operandValue ^ shortOperand.getValue());
 	}
 

@@ -7,7 +7,7 @@ public class DoubleMinimumOperand extends Operand<Double> {
 	}
 
 	@Override
-	protected Double opearte(Operand<Double> doubleOperand) {
+	protected Double operate(Operand<Double> doubleOperand) {
 		return Math.min(operandValue, doubleOperand.getValue());
 	}
 

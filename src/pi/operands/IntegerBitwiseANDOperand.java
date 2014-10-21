@@ -7,7 +7,7 @@ public class IntegerBitwiseANDOperand extends Operand<Integer> {
 	}
 
 	@Override
-	protected Integer opearte(Operand<Integer> integetOperand) {
+	protected Integer operate(Operand<Integer> integetOperand) {
 		return operandValue & integetOperand.getValue();
 	}
 

@@ -7,7 +7,7 @@ public class BooleanBitwiseOROperand extends Operand<Boolean> {
 	}
 
 	@Override
-	protected Boolean opearte(Operand<Boolean> booleanOperand) {
+	protected Boolean operate(Operand<Boolean> booleanOperand) {
 		return operandValue | booleanOperand.getValue();
 	}
 

@@ -7,7 +7,7 @@ public class FloatMinimumOperand extends Operand<Float> {
 	}
 
 	@Override
-	protected Float opearte(Operand<Float> floatOperand) {
+	protected Float operate(Operand<Float> floatOperand) {
 		return Math.min(operandValue, floatOperand.getValue());
 	}
 

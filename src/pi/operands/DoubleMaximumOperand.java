@@ -7,7 +7,7 @@ public class DoubleMaximumOperand extends Operand<Double> {
 	}
 
 	@Override
-	protected Double opearte(Operand<Double> doubleOperand) {
+	protected Double operate(Operand<Double> doubleOperand) {
 		return Math.max(operandValue, doubleOperand.getValue());
 	}
 

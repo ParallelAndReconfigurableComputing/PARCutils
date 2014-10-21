@@ -18,7 +18,7 @@ public class SetUnionOperand<T> extends Operand<Set<T>> {
 	}
 
 	@Override
-	protected Set<T> opearte(Operand<Set<T>> setOperand) {
+	protected Set<T> operate(Operand<Set<T>> setOperand) {
 		Set<T> secondOperandValue = setOperand.getValue();
 		for(T setElement : secondOperandValue)
 			operandValue.add(setElement);			

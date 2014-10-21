@@ -9,7 +9,7 @@ public class CollectionDifferenceOperand<T> extends Operand<Collection<T>> {
 	}
 	
 	@Override
-	protected Collection<T> opearte(Operand<Collection<T>> collectionOperand) {
+	protected Collection<T> operate(Operand<Collection<T>> collectionOperand) {
 		Collection<T> collection = collectionOperand.getValue();
 		for (T t : collection){
 			while(operandValue.contains(t))
