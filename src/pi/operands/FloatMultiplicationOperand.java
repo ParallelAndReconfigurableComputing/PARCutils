@@ -8,7 +8,7 @@ public class FloatMultiplicationOperand extends Operand<Float> {
 
 	@Override
 	protected Float opearte(Operand<Float> floatOperand) {
-		return operandValue * floatOperand.getValue();
+		return (Float) (operandValue * floatOperand.getValue());
 	}
 
 }

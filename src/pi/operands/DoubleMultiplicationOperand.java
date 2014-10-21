@@ -8,7 +8,7 @@ public class DoubleMultiplicationOperand extends Operand<Double> {
 
 	@Override
 	protected Double opearte(Operand<Double> doubleOperand) {
-		return operandValue * doubleOperand.getValue();
+		return (Double)(operandValue * doubleOperand.getValue());
 	}
 
 }

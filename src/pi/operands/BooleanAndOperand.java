@@ -1,8 +1,8 @@
 package pi.operands;
 
-public class BooleanAndOperand extends Operand<Boolean> {
+public class BooleanANDOperand extends Operand<Boolean> {
 
-	BooleanAndOperand(Boolean value) {
+	BooleanANDOperand(Boolean value) {
 		super(value);
 	}
 

@@ -12,10 +12,10 @@ public abstract class Operand<T> {
 	 * @author Mostafa Mehrabi
 	 * @since  14/10/2014
 	 * */
-	protected abstract T opearte(Operand<T> t);
+	protected abstract T opearte(Operand<T> operand);
 	
-	Operand(T t){
-		operandValue = t;
+	Operand(T value){
+		operandValue = value;
 	}
 	
 	public T getValue(){
