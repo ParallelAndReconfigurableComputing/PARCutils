@@ -1,9 +1,7 @@
 package pi.operands;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+
 
 /**
  * Creates the union of the invoking <code>Collection&ltT&gt</code> and the second 

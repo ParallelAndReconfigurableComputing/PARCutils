@@ -1,3 +1,7 @@
+1.0.4 (2014-10-29)
+===
+- Added new implementations to the reduction library, also suggested using "Operand" objects for reduction.
+
 1.0.3 (2014-03-12)
 ===
 - Change the default chunk size for DYNAMIC Scheduling into 1, which is consistent with the OpenMP specification.
