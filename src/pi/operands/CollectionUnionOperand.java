@@ -26,7 +26,7 @@ public class CollectionUnionOperand<T> extends Operand<Collection<T>> {
 			if(!operandValue.contains(t))
 				operandValue.add(t);
 		}
-		return collection;
+		return operandValue;
 	}
 
 }
