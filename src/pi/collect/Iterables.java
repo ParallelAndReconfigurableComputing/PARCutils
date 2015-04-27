@@ -23,8 +23,8 @@ public final class Iterables {
 	 * three and two elements, all in the original order.
 	 *
 	 * <p>Iterators returned by the returned iterable do not support the {@link
-	 * Iterator#remove()} method. The returned lists implement {@link
-	 * RandomAccess}, whether or not the input list does.
+	 * Iterator#remove()} method. The returned lists implement {@link java.util.RandomAccess},
+	 * whether or not the input list does.
 	 *
 	 * <p><b>Note:</b> The next method of the iterator within the Iterable is atomic.
 	 *

@@ -27,13 +27,13 @@ import java.util.NoSuchElementException;
  * Simple static methods to be called at the start of your own methods to verify
  * correct arguments and state. This allows constructs such as
  * <pre>
- *     if (count <= 0) {
+ *     if (count &lt;= 0) {
  *       throw new IllegalArgumentException("must be positive: " + count);
  *     }</pre>
  *
  * to be replaced with the more compact
  * <pre>
- *     checkArgument(count > 0, "must be positive: %s", count);</pre>
+ *     checkArgument(count &gt; 0, "must be positive: %s", count);</pre>
  *
  * Note that the sense of the expression is inverted; with {@code Preconditions}
  * you declare what you expect to be <i>true</i>, just as you do with an
