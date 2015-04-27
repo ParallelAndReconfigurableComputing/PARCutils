@@ -1,32 +1,46 @@
 package pi.reductions;
 
-import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-import pi.operands.*;
-
-public class MapIntersection<K, T> implements Reduction<Map<K, Operand<T>>> {
+public class MapIntersection<K, T> implements Reduction<Map<K, T>> {
+	
+	protected Reduction<T> reducer;
+	
+	public MapIntersection(Reduction<T> reducer){
+		this.reducer = reducer;
+	}
 
 	@Override
-	public Map<K, Operand<T>> reduce(Map<K, Operand<T>> m1, Map<K, Operand<T>> m2) {
-		HashSet<K> keySetMap2 = (HashSet<K>) m2.keySet(); 
+	public Map<K, T> reduce(Map<K, T> first, Map<K, T> second) {
 		
-		for (K key : keySetMap2){
-			if (m1.containsKey(key)){
-				Operand<T> value1 = m1.get(key);
-				if (value1 != null){
-					Operand<T> value2 = m2.get(key);
-					if (value2 != null)
-						value1.operateOn(value2);
-					m2.put(key, value1);
+		Set<K> firstMapKeys	= first.keySet();
+		
+		for (K key : firstMapKeys){
+			
+			if (second.containsKey(key)){
+				
+				T secondMapValue = second.get(key);
+				if (secondMapValue != null){
+					
+					T firstMapValue = first.get(key);
+					if (firstMapKeys != null){
+						
+						firstMapValue = reducer.reduce(firstMapValue, secondMapValue);
+						first.put(key, firstMapValue);
+						
+					}else{ //if firstMapValue is null, then simply put secondMapValue 
+						first.put(key, secondMapValue);
+					}					
 				}
-				//In the cases where value1 is null, don't do anything
+				
+				//if secondMapValue is null, then don't do anything
+								
+			} else{//if second map does not contain the same key...
+				first.remove(key);
 			}
-			else if (!m1.containsKey(key)){
-				m2.remove(key);
-			}
-		}	
-		return m2;
+		}
+		return first;
 	}
 
 }

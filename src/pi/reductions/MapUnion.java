@@ -1,8 +1,7 @@
 package pi.reductions;
 
-import java.util.HashSet;
 import java.util.Map;
-import pi.operands.Operand;
+import java.util.Set;
 
 /**
  * This class reduces two <code>Map</code> objects into one by merging them into
@@ -16,33 +15,39 @@ import pi.operands.Operand;
  *  @author Mostafa Mehrabi	
  *  @since  14/10/2014
  * */
-public class MapUnion<K, T> implements Reduction<Map<K, Operand<T>>> {
+
+public class MapUnion<K, T> implements Reduction<Map<K, T>> {
+	
+	protected Reduction<T> reducer;
+	
+	public MapUnion(Reduction<T> reducer){
+		this.reducer = reducer;
+	}
 
 	@Override
-	public Map<K, Operand<T>> reduce(Map<K, Operand<T>> m1, Map<K, Operand<T>> m2) {
-		HashSet<K> keySetMap2 = (HashSet<K>) m2.keySet();
-	
-		for (K key : keySetMap2){
-			
-			Operand<T> value2 = m2.get(key); 
-		    
-			if (m1.containsKey(key)){
-				Operand<T> value1 = m1.get(key);
-				if (value2!=null){
-					if (value1!=null){
-						value1.operateOn(value2);
-						m1.put(key, value1);
+	public Map<K, T> reduce(Map<K, T> first, Map<K, T> second) {
+		Set<K> secondMapKeys = second.keySet();
+		for (K key : secondMapKeys){
+			T secondMapValue = second.get(key);
+			if (first.containsKey(key)){
+				if (secondMapValue != null){
+					T firstMapValue = first.get(key);
+					if (firstMapValue != null){
+						firstMapValue = reducer.reduce(firstMapValue, secondMapValue);
+						first.put(key, firstMapValue);
+					}//if firstMapValue is null, then replace it with secondMapValue
+					else{
+					first.put(key, secondMapValue);
 					}
-					else
-						m1.put(key, value2);
 				}
-				/*For the cases where value2 is null, don't do anything*/				
+				
+				//if secondMapValue is null, don't do anything...
+				
+			}else{//if first doesn't contain the key then add it.
+				first.put(key, secondMapValue);
 			}
-			
-			else if (!m1.containsKey(key))
-				m1.put(key, value2);
 		}
-		return m1;
+		return first;
 	}
 
 }
