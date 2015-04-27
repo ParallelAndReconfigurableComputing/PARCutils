@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.RedLib;
 
 public class ByteBitwiseXOR implements Reduction<Byte> {
 

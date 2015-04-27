@@ -17,7 +17,7 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi.reductions;
+package pi.RedLib;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.RedLib;
 
 public class LongMinimum implements Reduction<Long> {
 

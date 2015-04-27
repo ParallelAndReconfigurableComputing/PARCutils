@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.RedLib;
 
 public class IntegerSum implements Reduction<Integer> {
 

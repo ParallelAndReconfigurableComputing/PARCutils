@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.RedLib;
 
 public class DoubleMinimum implements Reduction<Double> {
 

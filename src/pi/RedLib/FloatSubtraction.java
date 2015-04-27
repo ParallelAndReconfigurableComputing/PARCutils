@@ -1,4 +1,4 @@
-package pi.reductions;
+package pi.RedLib;
 
 public class FloatSubtraction implements Reduction<Float> {
 
