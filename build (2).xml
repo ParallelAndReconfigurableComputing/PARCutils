@@ -38,21 +38,21 @@
 	
 	<!-- This target compresses documentations into a jar file -->
 	<target name="javadoc" depends="docs">
-	 	<jar destfile="${dist.dir}/${jarVersion}-javadoc" basedir="${docs.dir}">
+	 	<jar destfile="${dist.dir}/${jarVersion}-javadoc.jar" basedir="${docs.dir}">
 	 		
 	 	</jar>
 	</target>
 	
 	<!-- This target compresses source files into a jar file -->
 	<target name="javasrc" >
-		<jar destfile="${dist.dir}/${jarVersion}-src" basedir="${src.dir}">
+		<jar destfile="${dist.dir}/${jarVersion}-src.jar" basedir="${src.dir}">
 		
 		</jar>
 	</target>
 	
 	<!-- This target creates the jar file -->
 	<target name="jar" depends="compile, javadoc, javasrc">
-		<jar destfile="${dist.dir}/${jarVersion}" basedir="${build.dir}">
+		<jar destfile="${dist.dir}/${jarVersion}.jar" basedir="${build.dir}">
 			
 		</jar>
 	</target>
