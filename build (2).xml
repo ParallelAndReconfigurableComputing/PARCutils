@@ -6,6 +6,7 @@
 	<property name="build.dir" value="bin" />
 	<property name="dist.dir"  value="dist"/>
 	<property name="docs.dir"  value="docs"/>
+	<property name="jarVersion" value = "ParallelIterator-1.0.5"/>
 	
 	<!-- This target deletes the existing build, docs, and dist directories -->
 	<target name="clean">
@@ -35,9 +36,23 @@
 		</javadoc>
 	</target>
 	
+	<!-- This target compresses documentations into a jar file -->
+	<target name="javadoc" depends="docs">
+	 	<jar destfile="${dist.dir}/${jarVersion}-javadoc" basedir="${docs.dir}">
+	 		
+	 	</jar>
+	</target>
+	
+	<!-- This target compresses source files into a jar file -->
+	<target name="javasrc" >
+		<jar destfile="${dist.dir}/${jarVersion}-src" basedir="${src.dir}">
+		
+		</jar>
+	</target>
+	
 	<!-- This target creates the jar file -->
-	<target name="jar" depends="compile">
-		<jar destfile="${dist.dir}/ParaIterator-1.0.4.jar" basedir="${build.dir}">
+	<target name="jar" depends="compile, javadoc, javasrc">
+		<jar destfile="${dist.dir}/${jarVersion}" basedir="${build.dir}">
 			
 		</jar>
 	</target>
