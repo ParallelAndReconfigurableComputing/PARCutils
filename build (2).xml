@@ -31,7 +31,7 @@
 	<target name="docs" depends="compile">
 		<javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
 			<fileset dir="${src.dir}">
-				<include name="**"/>
+				<include name="**/**"/>
 			</fileset>
 		</javadoc>
 	</target>
