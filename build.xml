@@ -4,14 +4,13 @@
 	<!-- The value of a property is accessed via ${} -->
 	<property name="src.dir"   value="src" />
 	<property name="build.dir" value="bin" />
-	<property name="dist.dir"  value="dist"/>
+	<property name="dist.dir"  value="release"/>
 	<property name="docs.dir"  value="docs"/>
 	<property name="jarName"   value="ParaIterator-1.0.5" />
 	
 	<!-- This target deletes the existing build, docs, and dist directories -->
 	<target name="clean">
 		<delete  dir="${build.dir}" />
-		<delete  dir="${dist.dir}"  />
 		<delete  dir="${docs.dir}"  />
 	</target> 
 	
