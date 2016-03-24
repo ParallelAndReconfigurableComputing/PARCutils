@@ -17,11 +17,11 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi;
+package pu.pi;
 
 import java.util.*;
 
-import pi.util.DynamicList;
+import pu.pi.util.DynamicList;
 
 /**
  * This class defines the functionality of a Parallel Iterator factory. The methods return a {@link ParIterator} instance 

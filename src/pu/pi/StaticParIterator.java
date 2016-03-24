@@ -1,8 +1,8 @@
-package pi;
+package pu.pi;
 
-import pi.collect.Lists;
-import pi.util.Flags;
-import pi.util.TLocal;
+import pu.pi.collect.Lists;
+import pu.pi.util.Flags;
+import pu.pi.util.TLocal;
 
 import java.util.*;
 import java.util.function.Consumer;

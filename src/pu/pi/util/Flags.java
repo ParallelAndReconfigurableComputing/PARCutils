@@ -1,4 +1,4 @@
-package pi.util;
+package pu.pi.util;
 
 /**
  * Put all flags in this class in order to reduce condition checks in frequently invoked method such as <code>hasNext()</code>.

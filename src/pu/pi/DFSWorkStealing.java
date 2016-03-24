@@ -17,7 +17,7 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi;
+package pu.pi;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;

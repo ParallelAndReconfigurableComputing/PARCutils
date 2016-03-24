@@ -17,7 +17,7 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi.exceptions;
+package pu.pi.exceptions;
 
 /**
  *	Represents a run-time exception due to incorrect usage of the Parallel Iterator. 

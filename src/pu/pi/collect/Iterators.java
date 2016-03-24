@@ -1,10 +1,10 @@
-package pi.collect;
+package pu.pi.collect;
 
 import java.util.*;
 import java.util.function.Consumer;
 
-import static pi.util.Preconditions.checkArgument;
-import static pi.util.Preconditions.checkNotNull;
+import static pu.pi.util.Preconditions.checkArgument;
+import static pu.pi.util.Preconditions.checkNotNull;
 
 /**
  * Author: xiaoxing

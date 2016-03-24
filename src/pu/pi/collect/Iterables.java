@@ -1,12 +1,12 @@
-package pi.collect;
+package pu.pi.collect;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-import static pi.util.Preconditions.checkArgument;
-import static pi.util.Preconditions.checkNotNull;
+import static pu.pi.util.Preconditions.checkArgument;
+import static pu.pi.util.Preconditions.checkNotNull;
 
 /**
  * Author: xiaoxing

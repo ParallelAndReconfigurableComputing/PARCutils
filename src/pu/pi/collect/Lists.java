@@ -1,6 +1,6 @@
-package pi.collect;
+package pu.pi.collect;
 
-import pi.util.VMSpec;
+import pu.pi.util.VMSpec;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -12,9 +12,9 @@ import java.util.function.ToLongFunction;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-import static pi.util.Preconditions.checkArgument;
-import static pi.util.Preconditions.checkElementIndex;
-import static pi.util.Preconditions.checkNotNull;
+import static pu.pi.util.Preconditions.checkArgument;
+import static pu.pi.util.Preconditions.checkElementIndex;
+import static pu.pi.util.Preconditions.checkNotNull;
 
 /**
  * Author: xiaoxing

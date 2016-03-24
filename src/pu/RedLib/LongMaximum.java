@@ -1,4 +1,4 @@
-package pi.RedLib;
+package pu.RedLib;
 
 public class LongMaximum implements Reduction<Long> {
 

@@ -17,7 +17,7 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi.RedLib;
+package pu.RedLib;
 
 import java.util.ArrayList;
 

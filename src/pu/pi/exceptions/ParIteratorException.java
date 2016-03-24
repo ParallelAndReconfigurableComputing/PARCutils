@@ -17,9 +17,9 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi.exceptions;
+package pu.pi.exceptions;
 
-import pi.ParIterator;
+import pu.pi.ParIterator;
 
 /**
  *	Stores information relevant to an exception that occurred during a particular iteration. Note that this class is not an 

@@ -1,6 +1,6 @@
-package pi;
+package pu.pi;
 
-import pi.collect.Lists;
+import pu.pi.collect.Lists;
 
 import java.util.*;
 

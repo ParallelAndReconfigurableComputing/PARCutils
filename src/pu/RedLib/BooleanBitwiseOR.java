@@ -1,4 +1,4 @@
-package pi.RedLib;
+package pu.RedLib;
 
 public class BooleanBitwiseOR implements Reduction<Boolean> {
 

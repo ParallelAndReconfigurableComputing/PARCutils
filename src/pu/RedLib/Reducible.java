@@ -17,11 +17,11 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi.RedLib;
+package pu.RedLib;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
-import pi.util.ThreadID;
+import pu.pi.util.ThreadID;
 
 /**
  *	Defines a Reducible. This essentials behaves like a thread-local variable, with the addition of a reduction function at the end

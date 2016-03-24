@@ -17,11 +17,11 @@
  *  with Parallel Iterator. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pi;
+package pu.pi;
 
 import java.util.Iterator;
 
-import pi.exceptions.ParIteratorException;
+import pu.pi.exceptions.ParIteratorException;
 
 /**
  * A Parallel Iterator over a collection. Unlike the standard sequential <code>java.util.Iterator</code>, the Parallel Iterator

@@ -1,4 +1,4 @@
-package pi;
+package pu.pi;
 
 import java.util.*;
 import java.util.function.Consumer;

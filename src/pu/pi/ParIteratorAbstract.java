@@ -1,10 +1,10 @@
-package pi;
+package pu.pi;
 
-import pi.exceptions.PIExceptionHelper;
-import pi.exceptions.ParIteratorException;
-import pi.util.Flags;
-import pi.util.TLocal;
-import pi.util.ThreadID;
+import pu.pi.exceptions.PIExceptionHelper;
+import pu.pi.exceptions.ParIteratorException;
+import pu.pi.util.Flags;
+import pu.pi.util.TLocal;
+import pu.pi.util.ThreadID;
 
 import java.util.Collection;
 import java.util.Iterator;
