@@ -6,7 +6,7 @@
 	<property name="build.dir" value="bin" />
 	<property name="dist.dir"  value="release"/>
 	<property name="docs.dir"  value="docs"/>
-	<property name="jarName"   value="ParaIterator-1.0.5" />
+	<property name="jarName"   value="ParaIterator-1.1.0" />
 	
 	<!-- This target deletes the existing build, docs, and dist directories -->
 	<target name="clean">
