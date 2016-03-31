@@ -1,3 +1,7 @@
+1.1.0 (2016-03-30)
+===
+- Key changes to ParallelIterator. ParallelIterator is now changed to PARCutils, and ParallelIterator is instead a sub-package of PARCutils. At this stage, "pu" is the top package of the framework, "pi" and "RedLib" are the sub-packages.
+
 1.0.4 (2014-10-29)
 ===
 - Added new implementations to the reduction library, also suggested using "Operand" objects for reduction.
