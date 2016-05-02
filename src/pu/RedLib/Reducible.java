@@ -21,6 +21,7 @@ package pu.RedLib;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
+
 import pu.pi.util.ThreadID;
 
 /**
@@ -36,6 +37,7 @@ import pu.pi.util.ThreadID;
 public class Reducible<E> {
 	
 	private HashMap<Integer,E> threadValues = new HashMap<Integer,E>();
+		
 	private boolean alreadyReduced = false;
 	private ReentrantLock reductionLock = new ReentrantLock();
 	
