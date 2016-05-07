@@ -1,4 +1,5 @@
 pu.RedLib
+pu.mapReducers
 pu.pi
 pu.pi.collect
 pu.pi.exceptions
