@@ -4,11 +4,17 @@ PARCutils is an ongoing project under development by the Parallel And Reconfigur
 
 ## Contributions
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+If you find PARCutils interesting, and would like to contribute to its development, please contact one of the following.   
+
+Dr. Oliver Sinnen  
+e-mail: o.sinnen@auckland.ac.nz   
+website: http://homepages.engineering.auckland.ac.nz/~sinnen/   
+
+Dr. Nasser Giacaman   
+e-mail: n.giacaman@auckland.ac.nz   
+website: http://homepages.engineering.auckland.ac.nz/~ngia003/   
+
+Furthermore, for either using the utilities or contributing to its development, please consider the 'Credits' and 'License' sections in this document.
 
 ## Credits
 
