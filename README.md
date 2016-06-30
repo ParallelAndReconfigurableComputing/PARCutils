@@ -15,12 +15,12 @@ PARCutils is an ongoing project under development by the Parallel And Reconfigur
 The credits of using this utility package goes to the Parallel And Reconfigurable Computing (PARC) group at the University of Auckland. In order to use PARCutils utilities, please cite the corresponding reference accordingly as provided here:
 
 ### Parallel Iterator
-Authors: Nasser Giacaman and Oliver Sinnen. <\br>
-Title: Parallel Iterator for parallelizing object-oriented applications. </br>
-Journal: International Jouranl of Parallel Programming. <\br>
-Year: 2011 p232-269 <\br>
-Publisher: Springer <\br>
-The following Bibtex is recommended for academic citations. <\br>
+Authors: Nasser Giacaman and Oliver Sinnen.    
+Title: Parallel Iterator for parallelizing object-oriented applications.     
+Journal: International Jouranl of Parallel Programming.    
+Year: 2011 p232-269     
+Publisher: Springer     
+The following Bibtex is recommended for academic citations.    
 
 @article{giacaman2011parallel,
   title={Parallel Iterator for parallelizing object-oriented applications},
