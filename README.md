@@ -42,7 +42,7 @@ The following Bibtex is recommended for academic citations.
 ### RedLib
 Authors: Mostafa Mehrabi, Xing Fan, Nasser Giacaman and Oliver Sinnen   
 Title: RedLib: Nestable Reductions for Collections in Java, Technical Report   
-publisher: The University of Auckland   
+Publisher: The University of Auckland   
 Year: 2015   
 Available from: https://researchspace.auckland.ac.nz/handle/2292/24293   
 
