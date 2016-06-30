@@ -14,9 +14,9 @@ Dr. Nasser Giacaman
 e-mail: n.giacaman@auckland.ac.nz   
 website: http://homepages.engineering.auckland.ac.nz/~ngia003/   
 
-Furthermore, for either using the utilities or contributing to their development, please consider the 'Credits' and 'License' sections in this document.
+Furthermore, for either using the utilities or contributing to their development, please consider the [Credits](#credits) and [License](#lisence) sections in this document.
 
-## Credits
+## <a name="credits"></a>Credits
 
 The credits of using this utility package goes to the Parallel And Reconfigurable Computing (PARC) group at the University of Auckland. In order to use PARCutils utilities, please cite the corresponding reference accordingly as provided here:
 
@@ -47,7 +47,7 @@ Year: 2015
 Available from: https://researchspace.auckland.ac.nz/handle/2292/24293   
 
 
-## License
+## <a name="lisence"></a>License
 
 PARCutils for Java is made available under the GNU General Public License (GPL). For details of terms and conditions that apply to the license please visit the following web-link. 
 
