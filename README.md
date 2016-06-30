@@ -22,23 +22,23 @@ Year: 2011 p232-269
 Publisher: Springer     
 The following Bibtex is recommended for academic citations.    
 
-@article{giacaman2011parallel,
-  title={Parallel Iterator for parallelizing object-oriented applications},
-  author={Giacaman, Nasser and Sinnen, Oliver},
-  journal={International Journal of Parallel Programming},
-  volume={39},
-  number={2},
-  pages={232--269},
-  year={2011},
-  publisher={Springer}
-}  
+@article{giacaman2011parallel,   
+  title={Parallel Iterator for parallelizing object-oriented applications},   
+  author={Giacaman, Nasser and Sinnen, Oliver},   
+  journal={International Journal of Parallel Programming},   
+  volume={39},   
+  number={2},   
+  pages={232--269},   
+  year={2011},   
+  publisher={Springer}   
+}      
 
 ### RedLib
-Authors: Mostafa Mehrabi, Xing Fan, Nasser Giacaman and Oliver Sinnen
-Title: RedLib: Nestable Reductions for Collections in Java, Technical Report
-publishe: The University of Auckland
-Year: 2015
-Available from: https://researchspace.auckland.ac.nz/handle/2292/24293
+Authors: Mostafa Mehrabi, Xing Fan, Nasser Giacaman and Oliver Sinnen   
+Title: RedLib: Nestable Reductions for Collections in Java, Technical Report   
+publishe: The University of Auckland   
+Year: 2015   
+Available from: https://researchspace.auckland.ac.nz/handle/2292/24293   
 
 
 ## License
