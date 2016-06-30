@@ -14,7 +14,7 @@ Dr. Nasser Giacaman
 e-mail: n.giacaman@auckland.ac.nz   
 website: http://homepages.engineering.auckland.ac.nz/~ngia003/   
 
-Furthermore, for either using the utilities or contributing to its development, please consider the 'Credits' and 'License' sections in this document.
+Furthermore, for either using the utilities or contributing to their developments, please consider the 'Credits' and 'License' sections in this document.
 
 ## Credits
 
