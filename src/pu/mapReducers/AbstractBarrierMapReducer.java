@@ -15,7 +15,7 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 	protected FunctorOneArgWithReturn<T, E> userDefinedFunctor;
 	private AtomicBoolean operationInProgress = new AtomicBoolean();
 	List<T> listOfResults;
-	private T reducedValue;
+	private volatile T reducedValue;
 	
 	protected AbstractBarrierMapReducer(){
 		this.listOfResults = new ArrayList<>();

@@ -23,7 +23,7 @@ import pu.RedLib.Reduction;
 public abstract class AbstractDynamicMapReducer<T, E> implements MapReducer<T, E>{
 	protected Reduction<T> reduction;
 	private AtomicBoolean operationInProgress = new AtomicBoolean();
-	private T reducedValue;
+	private volatile T reducedValue;
 	
 	protected AbstractDynamicMapReducer(){
 		this.operationInProgress.set(false);
