@@ -87,12 +87,19 @@ public class LoopSplitter {
 			return null;
 		}
 		
-		int lowerBound = (loopStart + loopStart%incrementStep);
+		int lowerBound;
+		int remainder = loopStart%incrementStep;
+		
+		if(remainder != 0)
+			lowerBound = (loopStart + (incrementStep - remainder));
+		else
+			lowerBound = loopStart;
+		
 		int upperBound = (loopStart + chunkSize);
 		if(loopCondition == LoopCondition.LessThanOrEqual)
 			upperBound -= 1;
 		
-		if(lowerBound > loopEnd){
+		if(lowerBound >= loopEnd){
 			done = true;
 			lock.unlock();
 			return null;
@@ -133,7 +140,7 @@ public class LoopSplitter {
 		if(loopCondition == LoopCondition.GreaterThanOrEqual)
 			lowerBound += 1;
 		
-		if(upperBound < loopEnd){
+		if(upperBound <= loopEnd){
 			done = true;
 			lock.unlock();
 			return null;
