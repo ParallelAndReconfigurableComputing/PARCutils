@@ -1,6 +1,9 @@
 package pu.mapReducers;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantLock;
+
+import com.sun.org.apache.regexp.internal.recompile;
 
 import pu.RedLib.Reduction;
 
@@ -23,12 +26,14 @@ import pu.RedLib.Reduction;
 public abstract class AbstractDynamicMapReducer<T, E> implements MapReducer<T, E>{
 	protected Reduction<T> reduction;
 	private AtomicBoolean operationInProgress = new AtomicBoolean();
-	private T reducedValue;
+	private volatile T reducedValue;
+	private ReentrantLock lock;
 	
 	protected AbstractDynamicMapReducer(){
 		this.operationInProgress.set(false);
 		this.reducedValue = null;
 		this.reduction = null;
+		this.lock = new ReentrantLock();
 	}
 	
 	/**
@@ -65,7 +70,8 @@ public abstract class AbstractDynamicMapReducer<T, E> implements MapReducer<T, E
 	 *  	 
 	 * @param result the result returned from 
 	 */
-	protected synchronized void submitResult(T result){
+	protected void submitResult(T result){
+		lock.lock();
 		if (reducedValue == null){
 			reducedValue = result;
 		}
@@ -74,6 +80,7 @@ public abstract class AbstractDynamicMapReducer<T, E> implements MapReducer<T, E
 			reducedValue = null;
 			parallelReduce(result, temp);
 		}
+		lock.unlock();
 	}
 	
 	/**

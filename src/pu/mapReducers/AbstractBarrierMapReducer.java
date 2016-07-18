@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantLock;
 
 import pt.functionalInterfaces.FunctorOneArgWithReturn;
 import pu.RedLib.Reduction;
@@ -15,13 +16,15 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 	protected FunctorOneArgWithReturn<T, E> userDefinedFunctor;
 	private AtomicBoolean operationInProgress = new AtomicBoolean();
 	List<T> listOfResults;
-	private T reducedValue;
+	private volatile T reducedValue;
+	private ReentrantLock lock;
 	
 	protected AbstractBarrierMapReducer(){
 		this.listOfResults = new ArrayList<>();
 		this.operationInProgress.set(false);
 		this.reducedValue = null;
 		this.reduction = null;
+		this.lock = new ReentrantLock();
 	}
 	
 	/**
@@ -52,12 +55,14 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 		this.reduction = reduction;
 	}
 	
-	protected synchronized void submitResult(T result){
+	protected void submitResult(T result){
+		lock.lock();
 		listOfResults.add(result);
 		if(listOfResults.size() == numOfComputationTasks){
 			for(T t : listOfResults)
 				submitReduction(t);
 		}
+		lock.unlock();
 	}
 	
 	/**
@@ -66,7 +71,8 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 	 *  	 
 	 * @param result the result returned from 
 	 */
-	protected synchronized void submitReduction(T result){
+	protected void submitReduction(T result){
+		lock.lock();
 		if (reducedValue == null){
 			reducedValue = result;
 		}
@@ -75,6 +81,7 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 			reducedValue = null;
 			parallelReduce(result, temp);
 		}
+		lock.unlock();
 	}
 	
 	/**
