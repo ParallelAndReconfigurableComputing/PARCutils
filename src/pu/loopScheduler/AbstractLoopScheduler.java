@@ -18,7 +18,7 @@ public abstract class AbstractLoopScheduler implements LoopScheduler {
 	protected int loopEnd;
 	protected int stride;
 	
-	public abstract LoopRange getChunk();
+	public abstract LoopRange getChunk(int threadID);
 	
 	protected int decideChunkSize(int userDefinedChunkSize, int numOfThreads){
 		if (userDefinedChunkSize > 0)

@@ -36,7 +36,7 @@ public class GuidedLoopScheduler extends DynamicLoopScheduler {
 	}
 	
 	@Override
-	public LoopRange getChunk() {
+	public LoopRange getChunk(int threadID) {
 		lock.lock();
 		if(done){
 			lock.unlock();

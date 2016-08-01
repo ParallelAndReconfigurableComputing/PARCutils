@@ -10,5 +10,5 @@ package pu.loopScheduler;
  * @since  2016
  */
 public interface LoopScheduler {
-	public LoopRange getChunk();
+	public LoopRange getChunk(int threadID);
 }

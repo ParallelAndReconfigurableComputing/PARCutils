@@ -48,7 +48,7 @@ public class DynamicLoopScheduler extends AbstractLoopScheduler{
 	
 	
 	@Override
-	public LoopRange getChunk(){
+	public LoopRange getChunk(int threadID){
 		lock.lock();
 		if(done){
 			lock.unlock();

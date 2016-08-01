@@ -1,7 +1,5 @@
 package pu.loopScheduler;
 
-import pt.runtime.WorkerThread;
-
 /**
  * This class partitions the iterations over a loop into static chunks. That is every thread gets
  * <code>loop-size/number-of-threads</code> iterations, or a close number to this if the loop size is not 
@@ -50,21 +48,15 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 	}
 	
 	@Override
-	public LoopRange getChunk() {
+	public LoopRange getChunk(int threadID) {
 		if(cyclic){
-			return getCyclicChunks();
+			return getCyclicChunks(threadID);
 		}
-		return getStaticChunks();
+		return getStaticChunks(threadID);
 	}
 	
-	private LoopRange getStaticChunks(){
-		Thread currentThread = Thread.currentThread();
-		if(!(currentThread instanceof WorkerThread))
-			throw new IllegalAccessError("STATIC LOOP SPLITTER MUST BE ONLY ACCESSED VIA PARATASK WORKER THREAD!");
+	private LoopRange getStaticChunks(int threadID){
 				
-		WorkerThread worker = (WorkerThread) Thread.currentThread(); 
-		int threadID = worker.getThreadID();
-		
 		if(isAscendingLoop){
 			LoopRange loopRange = ascendingPartitioning(threadID);
 			int extra = loopSize%chunkSize;
@@ -97,13 +89,8 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 		}
 	}
 	
-	private LoopRange getCyclicChunks(){
-		Thread currentThread = Thread.currentThread();
-		if(!(currentThread instanceof WorkerThread))
-			throw new IllegalAccessError("STATIC LOOP SPLITTER MUST BE ONLY ACCESSED VIA PARATASK WORKER THREAD!");
-				
-		WorkerThread worker = (WorkerThread) Thread.currentThread(); 
-		int threadID = worker.getThreadID();
+	private LoopRange getCyclicChunks(int threadID){
+		
 		LoopRange loopRange;
 		
 		if(isAscendingLoop){
