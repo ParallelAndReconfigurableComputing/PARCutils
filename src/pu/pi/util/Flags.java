@@ -1,5 +1,7 @@
 package pu.pi.util;
 
+import pu.loopScheduler.ThreadID;
+
 /**
  * Put all flags in this class in order to reduce condition checks in frequently invoked method such as <code>hasNext()</code>.
  *

@@ -7,9 +7,9 @@ public class MapDifference<K, T> implements Reduction<Map<K, T>> {
 
 	@Override
 	public Map<K, T> reduce(Map<K, T> first, Map<K, T> second) {
-		Set<K> firstMapKeys = first.keySet();
-		for (K key : firstMapKeys){
-			if (second.containsKey(key))
+		Set<K> secondMapKeys = second.keySet();
+		for (K key : secondMapKeys){
+			if (first.containsKey(key))
 				first.remove(key);
 		}
 		return first;

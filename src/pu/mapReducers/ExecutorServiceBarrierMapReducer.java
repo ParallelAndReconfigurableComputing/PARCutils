@@ -106,7 +106,11 @@ public class ExecutorServiceBarrierMapReducer<T, E> extends AbstractBarrierMapRe
 
 	@Override
 	protected void parallelReduce(T t1, T t2) {
-		Runnable runnable = () -> submitReduction(reduction.reduce(t1, t2));
+		Runnable runnable = () -> {
+			T result = reduction.reduce(t1, t2);
+			latestReductionTime.set(System.currentTimeMillis());
+			submitReduction(result);
+		};
 		executor.submit(runnable);
 		numberOfReductionTasks++;
 		if(waitingThread != null){
@@ -114,5 +118,4 @@ public class ExecutorServiceBarrierMapReducer<T, E> extends AbstractBarrierMapRe
 			waitingThread.interrupt();
 		}
 	}
-
 }

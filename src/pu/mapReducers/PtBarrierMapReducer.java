@@ -202,6 +202,7 @@ public PtBarrierMapReducer(Reduction<T> reduction,FunctorOneArgWithReturn<T, E> 
 		TaskID<Void> taskID = null;
 		FunctorNoArgsNoReturn functor = () -> {
 			T result = reduction.reduce(t1, t2);
+			latestReductionTime.set(System.currentTimeMillis());
 			submitReduction(result);
 		};
 		

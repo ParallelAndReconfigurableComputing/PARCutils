@@ -84,7 +84,7 @@ public class DynamicLoopScheduler extends AbstractLoopScheduler{
 		if(loopCondition == LoopCondition.LessThanOrEqual)
 			upperBound -= 1;
 		
-		if(lowerBound >= loopEnd){
+		if(lowerBound > loopEnd){
 			done = true;
 			return null;
 		}
@@ -125,7 +125,7 @@ public class DynamicLoopScheduler extends AbstractLoopScheduler{
 		if(loopCondition == LoopCondition.GreaterThanOrEqual)
 			lowerBound += 1;
 		
-		if(upperBound <= loopEnd){
+		if(upperBound < loopEnd){
 			done = true;
 			return null;
 		}

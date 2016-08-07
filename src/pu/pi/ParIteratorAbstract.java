@@ -1,10 +1,10 @@
 package pu.pi;
 
+import pu.loopScheduler.ThreadID;
 import pu.pi.exceptions.PIExceptionHelper;
 import pu.pi.exceptions.ParIteratorException;
 import pu.pi.util.Flags;
 import pu.pi.util.TLocal;
-import pu.pi.util.ThreadID;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -50,7 +50,6 @@ public abstract class ParIteratorAbstract<E> implements ParIterator<E> {
 		this.chunkSize = chunkSize;
 		data = null;
 		this.collection = collection;
-
 	}
 
 	public ParIteratorAbstract(int numOfThreads, boolean ignoreBarrier) {
@@ -60,7 +59,6 @@ public abstract class ParIteratorAbstract<E> implements ParIterator<E> {
 		flags = new Flags(threadID);
 		latch = new CountDownLatch(numOfThreads);
 		this.ignoreBarrier = ignoreBarrier;
-
 	}
 
 	@Override

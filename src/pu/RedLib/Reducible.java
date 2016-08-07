@@ -19,10 +19,10 @@
 
 package pu.RedLib;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-import pu.pi.util.ThreadID;
+import pu.loopScheduler.ThreadID;
 
 /**
  *	Defines a Reducible. This essentials behaves like a thread-local variable, with the addition of a reduction function at the end
@@ -36,8 +36,7 @@ import pu.pi.util.ThreadID;
  */
 public class Reducible<E> {
 	
-	private HashMap<Integer,E> threadValues = new HashMap<Integer,E>();
-		
+	private ConcurrentHashMap<Integer,E> threadValues = new ConcurrentHashMap<Integer,E>();
 	private boolean alreadyReduced = false;
 	private ReentrantLock reductionLock = new ReentrantLock();
 	

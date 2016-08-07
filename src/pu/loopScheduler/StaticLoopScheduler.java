@@ -70,7 +70,7 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 					loopRange.loopEnd = loopRange.loopEnd + extra;
 				}
 			}
-			return loopRange;
+			return validateAscendingRange(loopRange);			
 		}
 		else{
 			LoopRange loopRange = descendingPartitioning(threadID);
@@ -85,7 +85,7 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 					loopRange.loopEnd = loopRange.loopEnd - extra;
 				}
 			}
-			return loopRange;
+			return validateDescendingRange(loopRange);
 		}
 	}
 	
@@ -95,10 +95,12 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 		
 		if(isAscendingLoop){
 			loopRange = ascendingPartitioning(threadID);
+			validateAscendingRange(loopRange);
 			loopRange.setGlobalStride((numberOfThreads - 1) * chunkSize);
 		}
 		else{
 			loopRange = descendingPartitioning(threadID);
+			validateDescendingRange(loopRange);
 			loopRange.setGlobalStride(-1 * ((numberOfThreads - 1) * chunkSize));
 		}		
 		return loopRange;
@@ -109,22 +111,33 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 			throw new IllegalArgumentException("\n\nINVALID LOOP CONDITION FOR THIS LOOP INTERVAL \n "
 					+ "LOOP IS ASCENDING, CONDITION CAN BE EITHER \"LessThan\" OR \"LessThanOrEqual\" \n");
 		
-		int offset = threadID * chunkSize;
-		int remainder = offset%stride;
-		
-		int lowerBound = loopStart + offset;
-		if(remainder != 0)
-			lowerBound += (stride - remainder);
-		
-		int upperBound = loopStart + (offset + chunkSize);
+		int lowerBound = loopStart + (threadID * chunkSize);
+		int upperBound = lowerBound + chunkSize;
 		if(loopCondition == LoopCondition.LessThanOrEqual)
 			upperBound--;
-				
+		
+		
 		LoopRange loopRange = new LoopRange(chunkSize);
 		loopRange.loopStart = lowerBound;
 		loopRange.loopEnd = upperBound;
 		loopRange.localStride = stride;
+		return loopRange;
+	}
+	
+	private LoopRange validateAscendingRange(LoopRange loopRange){
+		int offset = loopRange.loopStart - this.loopStart;
+		int remainder = offset%stride;
+		if(remainder != 0)
+			loopRange.loopStart = loopRange.loopStart + (stride - remainder);
 		
+		
+		if (loopRange.loopStart > loopEnd){
+			return null;
+		}
+		
+		if (loopRange.loopEnd > loopEnd)
+			loopRange.loopEnd = loopEnd;
+	
 		return loopRange;
 	}
 	
@@ -133,17 +146,10 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 			throw new IllegalArgumentException("\n\nINVALID LOOP CONDITION FOR THIS LOOP INTERVAL \n"
 					+ "LOOP IS DESCENDING, CONDITION CAN BE EITHER \"GreaterThan\" OR \"GreaterThanOrEqual\" \n");
 				
-		int offset = threadID * chunkSize;
-		int remainder = offset%stride;
-		
-		int upperBound = loopStart - offset;
-		if(remainder != 0)
-			upperBound -= (stride - remainder);
-		
-		int lowerBound = loopStart - (offset + chunkSize);
+		int upperBound = loopStart - (threadID * chunkSize);
+		int lowerBound = upperBound - chunkSize;
 		if(loopCondition == LoopCondition.GreaterThanOrEqual)
 			lowerBound++;
-		
 		
 		LoopRange loopRange = new LoopRange(chunkSize);
 		loopRange.loopStart = upperBound;
@@ -151,4 +157,20 @@ public class StaticLoopScheduler extends AbstractLoopScheduler{
 		loopRange.localStride = -1 * stride;
 		return loopRange;
 	}	
+	
+	private LoopRange validateDescendingRange(LoopRange loopRange){
+		int offset = loopStart - loopRange.loopStart;
+		int remainder = offset%stride;
+		if(remainder != 0)
+			loopRange.loopStart = loopRange.loopStart - (stride - remainder);
+		
+		if(loopRange.loopStart < loopEnd){
+			return null;
+		}
+		
+		if(loopRange.loopEnd < loopEnd)
+			loopRange.loopEnd = loopEnd;
+		
+		return loopRange;
+	}
 }

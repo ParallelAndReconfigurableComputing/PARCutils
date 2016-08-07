@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
 
 import pt.functionalInterfaces.FunctorOneArgWithReturn;
@@ -18,6 +19,8 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 	List<T> listOfResults;
 	private volatile T reducedValue;
 	private ReentrantLock lock;
+	protected AtomicLong reductionStartTime = null;
+	protected AtomicLong latestReductionTime = null; 
 	
 	protected AbstractBarrierMapReducer(){
 		this.listOfResults = new ArrayList<>();
@@ -25,6 +28,8 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 		this.reducedValue = null;
 		this.reduction = null;
 		this.lock = new ReentrantLock();
+		this.reductionStartTime = new AtomicLong(0);
+		this.latestReductionTime = new AtomicLong(0);
 	}
 	
 	/**
@@ -59,8 +64,10 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 		lock.lock();
 		listOfResults.add(result);
 		if(listOfResults.size() == numOfComputationTasks){
+			reductionStartTime.set(System.currentTimeMillis());
 			for(T t : listOfResults)
-				submitReduction(t);
+				if (t != null)
+					submitReduction(t);
 		}
 		lock.unlock();
 	}
@@ -140,5 +147,21 @@ public abstract class AbstractBarrierMapReducer<T, E> implements MapReducer<T, E
 	 * @since  2016
 	 */
 	protected abstract void parallelReduce(T t1, T t2);	
+	
+	/**
+	 * Returns the time period in which reductions have been done
+	 * in parallel at the end of the process, for evaluation purposes.
+	 * 
+	 * @return long: the reduction time duration in milliseconds. 
+	 * 
+	 * @author Mostafa Mehrabi
+	 * @since  2016
+	 */
+	public long getReductionDuration(){
+		waitTillReductionsFinished();
+		long start = reductionStartTime.get();
+		long end = latestReductionTime.get();
+		return end - start;
+	}
 }
 

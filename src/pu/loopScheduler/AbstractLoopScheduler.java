@@ -38,7 +38,12 @@ public abstract class AbstractLoopScheduler implements LoopScheduler {
 				loopRange = loopEnd - loopStart;
 		}
 		
-		return Math.abs(loopRange/numOfThreads);
+		int chunkSize = Math.abs(loopRange/numOfThreads);
+		
+		if(chunkSize == 0)
+			chunkSize = 1;
+		
+		return chunkSize;
 	}
 	
 	protected boolean isAscendingLoop(){

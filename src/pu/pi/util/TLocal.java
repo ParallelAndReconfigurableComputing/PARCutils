@@ -2,6 +2,8 @@ package pu.pi.util;
 
 import java.util.concurrent.atomic.AtomicReferenceArray;
 
+import pu.loopScheduler.ThreadID;
+
 /**
  * This class works similar to the standard ThreadLocal but with
  * global control. All variables owned by individual threads can
