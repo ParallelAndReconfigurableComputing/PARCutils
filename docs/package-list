@@ -1,6 +1,5 @@
 pu.RedLib
 pu.loopScheduler
-pu.mapReducers
 pu.pi
 pu.pi.collect
 pu.pi.exceptions

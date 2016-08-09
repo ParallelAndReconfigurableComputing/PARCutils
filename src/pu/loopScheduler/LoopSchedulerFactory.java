@@ -13,7 +13,7 @@ import pu.loopScheduler.AbstractLoopScheduler.LoopCondition;
  */
 public class LoopSchedulerFactory {
 	
-	public enum ScheduleType{
+	public enum LoopSchedulingType{
 		Static, Dynamic, Guided
 	};
 	
@@ -28,7 +28,7 @@ public class LoopSchedulerFactory {
 	 * @param scheduleType
 	 * @return LoopScheduler an object of type {@link LoopScheduler}
 	 */
-	public static LoopScheduler createLoopScheduler(int loopStart, int loopEnd, int stride, int chunkSize, int numOfThreads, LoopCondition loopCondition, ScheduleType scheduleType){
+	public static LoopScheduler createLoopScheduler(int loopStart, int loopEnd, int stride, int chunkSize, int numOfThreads, LoopCondition loopCondition, LoopSchedulingType scheduleType){
 		switch(scheduleType){
 		case Static:
 			return new StaticLoopScheduler(loopStart, loopEnd, stride, chunkSize, numOfThreads, loopCondition);
@@ -51,7 +51,7 @@ public class LoopSchedulerFactory {
 	 * @param scheduleType
 	 * @return LoopScheduler an object of type {@link LoopScheduler}
 	 */
-	public static LoopScheduler createLoopScheduler(int loopStart, int loopEnd, int stride, int numOfThreads, LoopCondition loopCondition, ScheduleType scheduleType){
+	public static LoopScheduler createLoopScheduler(int loopStart, int loopEnd, int stride, int numOfThreads, LoopCondition loopCondition, LoopSchedulingType scheduleType){
 		switch(scheduleType){
 		case Static:
 			return new StaticLoopScheduler(loopStart, loopEnd, stride, numOfThreads, loopCondition);
