@@ -1,0 +1,79 @@
+Project README
+===
+
+<a name="structure"></a>The Directory Structure
+---
+This is an example of how the directory structure should be for a normal project.
+
++ **trunk**					The trunk of the project.
++ **bin**					This directory holds the compiled files of the source codes.
++ **docs**	   				This is where we keep the documentation files of this project.
++ **doc**                		        This is the directory that holds the following three directories:
+		+ **examples**			Example code (e.g. a hello world project).
+		+ **tutorial**			Tutorials.
+		+ **other docs**	
++ **src**					Source code.
++ **test**					Unit tests (unit tests only!). If files with name ***Test.java appear in this folder, it will be considered as an JUnit test class.
++ **release**					Latest version of the app (.jar file, javadoc and sources).
++ **lib**					Here is where we keep the dependencies.
++ **branches**					Branches for everyone to modify or experiment on the project.
+	+ **NewFeatureAdded**			This is an example of a branch.
++ **tags**					Snapshots of the projects. Everything under here is frozen (unmodifiable).
+	+ **1.0_release**
+	+ **1.1_release**
++ **benchmarks**			Benchmarks for this project.
+
+
+Build the Project
+---
+
+### Prerequisite
+
++ [ant](http://ant.apache.org/) is properly installed on your system.
++ Java 1.6 or later.
+
+Additionally, [ivy](http://ant.apache.org/ivy/) is needed. If it is not installed on your system, within any project with ant `build.xml` file in it, use following command to install it automatically (internet access required).
+
+	$ ant install-ivy
+	
+As simple as that.
+
+### Build by Ant (Command Line Interface)
+
+Commonly used commands:
+
+Option		|	Description 
+:---		|	:--- 
+compile		|	Compile all Java files into class files (into folder target/classes/). 
+install-ivy	|	Install ivy if it is not properly installed. 
+test		|	Run all JUnit tests, output report into `target/report/` folder. 
+main		|	Default option, equivalent of compile + test. 
+build		|	Build .jar file without any dependencies.
+package-all	|	Build .jar file with all dependencies and package sources and javadoc as jar files.
+
+Use following command to view available options.
+
+	$ ant -p
+
+### Import the Project into Eclipse
+
+Check out the project from svn (check your branch under `branches/` folder, not the trunk or even the whole project folder). I use ParallelIterator as an example here.
+
+	$ svn checkout https://svn.ece.auckland.ac.nz/svn/taschto/ParallelIterator/branches/MyBranch ParallelIterator
+	
+After checkout the project, you should have a folder with structure similar to one that is described above in the [Directory Structure](#structure) section.
+
+In Eclipse:
+
+1. `File` -> `New` -> `Java Project`. Disable the `Use default location` checkbox. Fill the path of your newly checked out project into the `Location` box.
+2. Press `next`. Adjust the settings accordingly. Remember to `Add folder 'test' to build path` in order to integrate JUnit into the project.
+3. Press `finish`.
+
+### Run Ant Task in Eclipse
+
+1. Right click `build.xml` in the Package Explorer view. `Run As` -> `Ant Build...`.
+2. Choose the target(s) to run.
+
+For newly checked out project, you may want to run one of the `ant main`/`ant compile`/`ant test`/`ant build` at least once to get all the missing dependencies into position (`lib`), but **never commit the jar files in the `lib` folder onto svn**. 
+
+If it fails and notify you that it cannot find the `ivy` installed in your system, run `ant install-ivy` (it's an one-off process). Make sure that you have access to the internet when doing so.

@@ -1,7 +1,7 @@
 package pu.RedLib;
 
 import java.util.Map;
-import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * This class reduces two <code>Map</code> objects into one by merging them into
@@ -26,25 +26,21 @@ public class MapUnion<K, T> implements Reduction<Map<K, T>> {
 
 	@Override
 	public Map<K, T> reduce(Map<K, T> first, Map<K, T> second) {
-		Set<K> secondMapKeys = second.keySet();
-		for (K key : secondMapKeys){
-			T secondMapValue = second.get(key);
-			if (first.containsKey(key)){
-				if (secondMapValue != null){
-					T firstMapValue = first.get(key);
+		for(Entry<K, T> entry : second.entrySet()){
+			K secondMapKey = entry.getKey();
+			T secondMapValue = entry.getValue();
+			if(first.containsKey(secondMapKey)){
+				if(secondMapValue != null){
+					T firstMapValue = first.get(secondMapKey);
 					if (firstMapValue != null){
-						firstMapValue = reducer.reduce(firstMapValue, secondMapValue);
-						first.put(key, firstMapValue);
-					}//if firstMapValue is null, then replace it with secondMapValue
-					else{
-					first.put(key, secondMapValue);
+						first.put(secondMapKey, reducer.reduce(firstMapValue, secondMapValue));
+					}else{
+						first.put(secondMapKey, secondMapValue);
 					}
 				}
-				
-				//if secondMapValue is null, don't do anything...
-				
-			}else{//if first doesn't contain the key then add it.
-				first.put(key, secondMapValue);
+			}
+			else{
+				first.put(secondMapKey, secondMapValue);
 			}
 		}
 		return first;
