@@ -6,7 +6,6 @@ Project README
 This is an example of how the directory structure should be for a normal project.
 
 + **trunk**					The trunk of the project.
-+ **bin**					This directory holds the compiled files of the source codes.
 + **docs**	   				This is where we keep the documentation files of this project.
 + **doc**                		        This is the directory that holds the following three directories:
 		+ **examples**			Example code (e.g. a hello world project).
