@@ -43,16 +43,16 @@ The following Bibtex is recommended for academic citations.
 Authors: Mostafa Mehrabi, Xing Fan, Nasser Giacaman and Oliver Sinnen   
 Title: RedLib: Nestable Reductions for Collections in Java   
 Publisher: IEEE     
-Year: 2016, December
-Journal: International IEEE Conference on High Performance Computing and Communication (HPCC 2016), Sydney, Australia
+Year: 2016, December     
+Journal: International IEEE Conference on High Performance Computing and Communication (HPCC 2016), Sydney, Australia      
 The following Bibtex is recommended for academic citations.    
 
 @article{mehrabi2016RedLib,   
   title={RedLib: Nestable Reductions for Collections in Java},   
   author={M. Mehrabi and X. Fan and N. Giacaman and O. Sinnen},   
   journal={International IEEE Conference on High Performance Computing and Communication (HPCC 2016)},   
-  year={2016},
-  month={December},   
+  year={2016},     
+  month={December},        
   publisher={IEEE}   
 }     
 
