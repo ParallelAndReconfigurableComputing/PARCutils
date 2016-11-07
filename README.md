@@ -29,7 +29,7 @@ Publisher: Springer
 The following Bibtex is recommended for academic citations.    
 
 @article{giacaman2011parallel,   
-  title={Parallel Iterator for parallelizing object-oriented applications},   
+  title={{Parallel Iterator for parallelizing object-oriented applications}},   
   author={N. Giacaman and O. Sinnen},   
   journal={International Journal of Parallel Programming},   
   volume={39},   
@@ -48,7 +48,7 @@ Journal: International IEEE Conference on High Performance Computing and Communi
 The following Bibtex is recommended for academic citations.    
 
 @article{mehrabi2016RedLib,   
-  title={RedLib: Nestable Reductions for Collections in Java},   
+  title={{RedLib: Nestable Reductions for Collections in Java}},   
   author={M. Mehrabi and X. Fan and N. Giacaman and O. Sinnen},   
   journal={International IEEE Conference on High Performance Computing and Communication (HPCC 2016)},   
   year={2016},     
@@ -59,7 +59,7 @@ The following Bibtex is recommended for academic citations.
 
 ## <a name="lisence"></a>License
 
-PARCutils for Java is made available under the GNU General Public License (GPL). For details of terms and conditions that apply to the license please visit the following web-link. 
+PARCutils for Java is available under the GNU General Public License (GPL). For details of terms and conditions that apply to the license please visit the following web-link. 
 
 http://parallel.auckland.ac.nz/ParallelIT/downloads/COPYING.txt
 
