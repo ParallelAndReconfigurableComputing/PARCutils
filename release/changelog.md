@@ -1,3 +1,15 @@
+1.2.2 (2016-11-18)
+===
+- New reduction classes were added for List<T> (including Intersection, Union and Join).
+
+1.2.1 (2016-08-03)
+===
+- The loop scheduler package was extended to address static and guided loop scheduling policies as well.
+
+1.2.0 (2016-07-20)
+===
+- Initial version of loop schedulers were added to the utility package. The current version only provided dynamic loop scheduling policy. 
+
 1.1.0 (2016-03-30)
 ===
 - Key changes to ParallelIterator. ParallelIterator is now changed to PARCutils, and ParallelIterator is instead a sub-package of PARCutils. At this stage, "pu" is the top package of the framework, "pi" and "RedLib" are the sub-packages.
