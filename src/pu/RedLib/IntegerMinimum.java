@@ -6,7 +6,4 @@ public class IntegerMinimum implements Reduction<Integer> {
 	public Integer reduce(Integer first, Integer second) {
 		return Math.min(first, second);
 	}
-	
-	
-
 }

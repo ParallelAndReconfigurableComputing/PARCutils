@@ -8,7 +8,7 @@
 	<property name="docs.dir"  value="docs"/>
 	<property name="libs.dir"  value="libs"/>
 	<property name="ParaTaskJar" value="PTLambda-Runtime-1.0.3.jar"/>
-	<property name="jarName"   value="PARCutils-1.2.2" />
+	<property name="jarName"   value="PARCutils-1.2.3" />
 	
 	<!-- This target deletes the existing build, docs, and dist directories -->
 	<target name="clean">
