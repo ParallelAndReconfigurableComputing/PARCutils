@@ -7,7 +7,6 @@
 	<property name="dist.dir"  value="release"/>
 	<property name="docs.dir"  value="docs"/>
 	<property name="libs.dir"  value="libs"/>
-	<property name="ParaTaskJar" value="PTLambda-Runtime-1.0.3.jar"/>
 	<property name="jarName"   value="PARCutils-1.2.3" />
 	
 	<!-- This target deletes the existing build, docs, and dist directories -->
@@ -26,9 +25,7 @@
 	<!-- This target compiles the java code -->
 	<target name="compile" depends="clean, makedir" >
 		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
-		    <classpath>
-				<pathelement location="${libs.dir}/${ParaTaskJar}"/>
-			</classpath>
+		  
 		</javac>
 	</target>
 	
@@ -38,9 +35,6 @@
 			<fileset dir="${src.dir}">
 				<include name="**/**"/>
 			</fileset>
-			<classpath>
-			    <pathelement location="${libs.dir}/${ParaTaskJar}"/>
-			</classpath>
 		</javadoc>
 	</target>
 	
