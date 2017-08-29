@@ -50,7 +50,7 @@ public class LoopRange {
 	 * <b>NOTE:</b> Importantly, it must be checked that the iterations do not exceed the very
 	 * end of the original loop as the result of invoking this method. 
 	 */
-	public void applyGlobalStrid(){
+	public void applyGlobalStride(){
 		if(globalStride == 0)
 			return;
 		int newStart = loopEnd + globalStride;
@@ -65,7 +65,7 @@ public class LoopRange {
 		loopEnd = newStart + ((localStride/absoluteStride) * chunkSize);
 	}
 	
-	public int getGlobalStrid(){
+	public int getGlobalStride(){
 		return globalStride;
 	}
 }

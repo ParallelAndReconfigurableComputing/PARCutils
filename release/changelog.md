@@ -1,3 +1,7 @@
+1.2.4 (2017-08-28)
+====
+- refactoring modifications (method names) were done!
+
 1.2.2 (2016-11-18)
 ===
 - New reduction classes were added for List<T> (including Intersection, Union and Join).

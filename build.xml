@@ -7,7 +7,7 @@
 	<property name="dist.dir"  value="release"/>
 	<property name="docs.dir"  value="docs"/>
 	<property name="libs.dir"  value="libs"/>
-	<property name="jarName"   value="PARCutils-1.2.3" />
+	<property name="jarName"   value="PARCutils-1.2.4" />
 	
 	<!-- This target deletes the existing build, docs, and dist directories -->
 	<target name="clean">
